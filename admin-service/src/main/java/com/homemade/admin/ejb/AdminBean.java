@@ -1,4 +1,5 @@
 package com.homemade.admin.ejb;
+import com.homemade.admin.endpoints.AdminApp;
 import com.homemade.admin.entities.Customer;
 import com.homemade.admin.entities.Seller;
 import com.mongodb.client.MongoCollection;
