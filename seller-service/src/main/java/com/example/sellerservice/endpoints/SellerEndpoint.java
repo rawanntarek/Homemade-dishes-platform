@@ -40,12 +40,11 @@ public class SellerEndpoint {
                     .build();
         }
     }
-
     @Path("addDish")
     @POST
     public Response addDish(Dish dish) {
         sellerService.AddDishes(dish);
-        return Response.ok().entity("Dish added").build();
+        return Response.ok().build();
     }
 
 }

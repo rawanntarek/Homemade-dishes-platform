@@ -41,7 +41,20 @@ textarea{
     border-radius: 6px;
     font-size: 14px;
 }
-
+input[type="text"]{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+input[type="password"]{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
 input[type="submit"] {
     background-color:  #ffb4db;
     color: white;
