@@ -1,0 +1,19 @@
+<html>
+<head>
+    <title>Add Seller Companies Accounts</title>
+    <link rel="stylesheet" type="text/css" href="../CSS/AddSellers.css">
+    <script src="../JS/AddSellers.js"></script>
+</head>
+<body>
+    <h1>Add Seller Companies Accounts</h1>
+    <p>Fill in the form below to create a new seller company account.</p>
+    <form id="addSellerForm" onsubmit="return addSellers(event)">
+        <label for="companyNames">Company Names:</label><br>
+        <p>Companies names must be unique</p>
+        <textarea id="companyNames" name="companyNames" rows="8" cols="40" placeholder="One company per line..."></textarea><br><br>
+        
+        <input type="submit" value="Add Company Account">
+    </form> 
+    <div id="message"></div>
+</body>
+</html>

@@ -27,7 +27,7 @@ public class AdminEndpoint {
     @Path("/getSellers")
     public Response getSellers() {
         if(adminBean.ListSellerAccounts().size() == 0) {
-            return Response.ok("No sellers found").build();
+            return Response.noContent().build();
         }
         return Response.ok(adminBean.ListSellerAccounts()).build();
     }
@@ -36,7 +36,7 @@ public class AdminEndpoint {
     @Path("/getCustomers")
     public Response getCustomers() {
         if(adminBean.ListCustomerAccounts().size() == 0) {
-            return Response.ok("No Customers found").build();
+            return Response.noContent().build();
         }
         return Response.ok(adminBean.ListCustomerAccounts()).build();
     }
