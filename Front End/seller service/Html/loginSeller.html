@@ -1,0 +1,21 @@
+<html>
+<head>
+    <title>Seller Login</title>
+    <link rel="stylesheet" type="text/css" href="Front End/Admin service/CSS/AddSellers.css">
+    <script src="../JS/AddSellers.js"></script>
+</head>
+<body>
+<h1>Seller Login</h1>
+<p>Fill in the form below to log into your seller account.</p>
+<form id="loginForm" onsubmit="return loginSeller(event)">
+    <label for="companyName">Company Name:</label><br>
+    <input type="text" id="companyName" name="companyName" placeholder="Enter your company name" required><br><br>
+
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password" placeholder="Enter your password" required><br><br>
+
+    <input type="submit" value="Login">
+</form>
+<div id="message"></div>
+</body>
+</html>
