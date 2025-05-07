@@ -8,6 +8,9 @@ import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
 import org.bson.Document;
 
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,19 +23,53 @@ public class AdminBean {
     PasswordGeneratorBean passwordGeneratorBean;
 
     public List<String> createSellerAccount(List<String> uniqueCompanyNames) {
-        List<String>response=new ArrayList<>();
+        List<String> response = new ArrayList<>();
         MongoCollection<Document> collection = dbConnection.getDb().getCollection("sellers");
+
         for (String uniqueCompanyName : uniqueCompanyNames) {
             boolean exists = collection.find(Filters.eq("companyName", uniqueCompanyName)).first() != null;
             if (exists) {
                 response.add("Company with name " + uniqueCompanyName + " is already added.");
                 continue;
             }
+
             String companyPassword = passwordGeneratorBean.generatePassword(10);
-            Document doc = new Document("companyName", uniqueCompanyName).append("companyPassword", companyPassword);
+
+            // Insert into Admin DB
+            Document doc = new Document("companyName", uniqueCompanyName)
+                    .append("companyPassword", companyPassword);
             collection.insertOne(doc);
-            response.add("created account for company: " + uniqueCompanyName + " and password: " + companyPassword);
+
+            // Send to Seller Service
+            try {
+                URL url = new URL("http://localhost:8082/sellers");
+                HttpURLConnection con = (HttpURLConnection) url.openConnection();
+                con.setRequestMethod("POST");
+                con.setRequestProperty("Content-Type", "application/json");
+                con.setDoOutput(true);
+
+                String json = String.format("{\"companyName\":\"%s\", \"password\":\"%s\"}",
+                        uniqueCompanyName, companyPassword);
+
+                try (OutputStream os = con.getOutputStream()) {
+                    byte[] input = json.getBytes("utf-8");
+                    os.write(input, 0, input.length);
+                }
+
+                int status = con.getResponseCode();
+                if (status == 200 || status == 201) {
+                    response.add("Created account for company: " + uniqueCompanyName + " and password: " + companyPassword);
+                } else {
+                    response.add("Created account for company: " + uniqueCompanyName + " and password: " + companyPassword +
+                            " (but failed to notify seller service, status " + status + ")");
+                }
+
+            } catch (Exception e) {
+                response.add("Error while notifying Seller Service for company: " + uniqueCompanyName + ". Exception: " + e.getMessage());
+                e.printStackTrace();
+            }
         }
+
         return response;
     }
 
@@ -43,11 +80,8 @@ public class AdminBean {
             String companyName = doc.getString("companyName");
             String companyPassword = doc.getString("companyPassword");
             sellers.add(new Seller(companyName, companyPassword));
-
-
         }
         return sellers;
-
     }
 
     public List<Customer> ListCustomerAccounts() {
@@ -57,11 +91,7 @@ public class AdminBean {
             String customerName = doc.getString("customerName");
             String customerPassword = doc.getString("customerPassword");
             customers.add(new Customer(customerName, customerPassword));
-
         }
         return customers;
-
     }
-
-
 }
