@@ -1,6 +1,6 @@
 package com.example.adminsrvc;
 
-import com.example.adminsrvc.ejb.AdminBean;
+import com.example.adminsrvc.EJB.AdminBean;
 import com.example.adminsrvc.entities.Customer;
 import com.example.adminsrvc.entities.Seller;
 import jakarta.ejb.EJB;

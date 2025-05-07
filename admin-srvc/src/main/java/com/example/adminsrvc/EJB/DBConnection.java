@@ -1,4 +1,4 @@
-package com.example.adminsrvc.ejb;
+package com.example.adminsrvc.EJB;
 
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;

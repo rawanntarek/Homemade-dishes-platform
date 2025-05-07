@@ -1,4 +1,4 @@
-package com.example.adminsrvc.ejb;
+package com.example.adminsrvc.EJB;
 
 import jakarta.ejb.Stateless;
 

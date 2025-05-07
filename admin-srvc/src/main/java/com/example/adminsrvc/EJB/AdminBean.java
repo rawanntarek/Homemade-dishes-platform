@@ -1,4 +1,4 @@
-package com.example.adminsrvc.ejb;
+package com.example.adminsrvc.EJB;
 
 import com.example.adminsrvc.entities.Customer;
 import com.example.adminsrvc.entities.Seller;
@@ -14,10 +14,10 @@ import java.util.List;
 @Stateless
 public class AdminBean {
     @EJB
-    DBConnection dbConnection;
+    com.example.adminsrvc.EJB.DBConnection dbConnection;
 
     @EJB
-    PasswordGeneratorBean passwordGeneratorBean;
+    com.example.adminsrvc.EJB.PasswordGeneratorBean passwordGeneratorBean;
 
     public List<String> createSellerAccount(List<String> uniqueCompanyNames) {
         List<String>response=new ArrayList<>();
