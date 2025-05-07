@@ -1,10 +1,10 @@
-package com.example.sellerservice;
+package com.example.sellerservice.endpoints;
 
+import com.example.sellerservice.Seller;
+import com.example.sellerservice.SellerService;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-
-import java.util.List;
 
 @Path("/sellers")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -16,7 +16,7 @@ public class SellerEndpoint {
     @POST
     public Response create(Seller seller) {
         sellerService.saveSeller(seller);
-        return Response.status(Response.Status.CREATED).build();
+        return Response.status(Response.Status.CREATED).entity("Seller account added").build();
     }
 
 

@@ -9,7 +9,7 @@ import java.util.List;
 public class SellerService {
 
     public void saveSeller(Seller seller) {
-        MongoCollection<Document> collection = SellerDB.getDb().getCollection("sellers");
+        MongoCollection<Document> collection = SellerDB.getDb().getCollection("accounts");
 
         Document doc = new Document("companyName", seller.getCompanyName())
                 .append("password", seller.getPassword());

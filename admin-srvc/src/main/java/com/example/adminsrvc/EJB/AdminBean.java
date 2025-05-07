@@ -35,14 +35,13 @@ public class AdminBean {
 
             String companyPassword = passwordGeneratorBean.generatePassword(10);
 
-            // Insert into Admin DB
             Document doc = new Document("companyName", uniqueCompanyName)
                     .append("companyPassword", companyPassword);
             collection.insertOne(doc);
 
             // Send to Seller Service
             try {
-                URL url = new URL("http://localhost:8082/sellers");
+                URL url = new URL("http://localhost:8081/seller-service/api/sellers");
                 HttpURLConnection con = (HttpURLConnection) url.openConnection();
                 con.setRequestMethod("POST");
                 con.setRequestProperty("Content-Type", "application/json");
