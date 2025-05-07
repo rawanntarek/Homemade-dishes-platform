@@ -19,5 +19,11 @@ public class SellerEndpoint {
         return Response.status(Response.Status.CREATED).entity("Seller account added").build();
     }
 
+    @POST
+    @Path("/login")
+    public Response login(Seller seller) {
+        sellerService.loginSeller(seller.getCompanyName(), seller.getPassword());
+        return Response.ok().entity("Login attempted for " + seller.getCompanyName()).build();
+    }
 
 }
