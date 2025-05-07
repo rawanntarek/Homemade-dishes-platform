@@ -1,6 +1,7 @@
-package com.homemade.admin.ejb;
+package com.example.adminsrvc.ejb;
 
-import javax.ejb.Stateless;
+import jakarta.ejb.Stateless;
+
 import java.security.SecureRandom;
 
 @Stateless
