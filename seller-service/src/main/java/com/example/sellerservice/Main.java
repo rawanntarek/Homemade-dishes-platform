@@ -7,7 +7,7 @@ import org.glassfish.jersey.server.ResourceConfig;
 import java.net.URI;
 
 public class Main {
-    public static final String BASE_URI = "http://localhost:8081/seller-service/api/";
+    public static final String BASE_URI = "http://localhost:8082/seller-service/api/";
 
     // Start the server
     public static HttpServer startServer() {

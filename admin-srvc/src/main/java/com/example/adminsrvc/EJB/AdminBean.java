@@ -41,7 +41,7 @@ public class AdminBean {
 
             // Send to Seller Service
             try {
-                URL url = new URL("http://localhost:8081/seller-service/api/sellers");
+                URL url = new URL("http://localhost:8082/seller-service/api/sellers");
                 HttpURLConnection con = (HttpURLConnection) url.openConnection();
                 con.setRequestMethod("POST");
                 con.setRequestProperty("Content-Type", "application/json");
