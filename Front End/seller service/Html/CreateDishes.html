@@ -1,0 +1,23 @@
+<html>
+<head>
+    <title>Create Dishes</title>
+    <link rel="stylesheet" type="text/css" href="../CSS/CreateDishes.css">
+    <script src="../JS/CreateDishes.js"></script>
+</head>
+<body>
+    <h1>Create Dishes</h1>
+    <p>Fill in the form below to create a new dish.</p>
+    <form id="createDishForm" onsubmit="return createDish(event)">
+        <label for="dishName">Dish Name:</label><br>
+        <input type="text" id="dishName" name="dishName" required><br><br>
+
+        <label for="amount">Amount:</label><br>
+        <input type="number" id="amount" name="amount" required><br><br>
+
+        <label for="price">Price:</label><br>
+        <input type="number" id="price" name="price" required><br><br>
+
+        <input type="submit" value="Create Dish">
+    </form> 
+    <div id="message"></div>
+</html>
