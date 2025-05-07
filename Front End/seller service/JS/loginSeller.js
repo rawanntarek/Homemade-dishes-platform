@@ -18,8 +18,14 @@ function loginSeller(event) {
     })
         .then(response => response.json())
         .then(result => {
-            alert(result.message);
-            document.getElementById('message').innerText = 'Login successful!';
+            // Check for specific success or error messages
+            if (result.success) {
+                alert("Login successful!");
+                document.getElementById('message').innerText = 'Login successful!';
+                // Redirect or update UI
+            } else {
+                document.getElementById('message').innerText = result.message || 'Login failed. Please try again.';
+            }
         })
         .catch(error => {
             console.error('Error:', error);
