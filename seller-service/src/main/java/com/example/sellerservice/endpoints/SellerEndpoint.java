@@ -26,9 +26,21 @@ public class SellerEndpoint {
     @POST
     @Path("/login")
     public Response login(Seller seller) {
-        sellerService.loginSeller(seller.getCompanyName(), seller.getPassword());
-        return Response.ok().entity("Login attempted for " + seller.getCompanyName()).build();
+        // Authenticate the seller
+        String loginMessage = sellerService.loginSeller(seller.getCompanyName(), seller.getPassword());
+
+        // Check if the login was successful and return the appropriate response
+        if (loginMessage.equals("Login successful!")) {
+            // Return the response as a valid JSON object
+            return Response.ok().entity("{\"success\": true, \"message\": \"Login successful!\"}").build();
+        } else {
+            // Return the response as a valid JSON object for failure
+            return Response.status(Response.Status.UNAUTHORIZED)
+                    .entity("{\"success\": false, \"message\": \"" + loginMessage + "\"}")
+                    .build();
+        }
     }
+
     @Path("addDish")
     @POST
     public Response addDish(Dish dish) {

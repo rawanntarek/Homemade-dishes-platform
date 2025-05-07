@@ -16,13 +16,12 @@ function loginSeller(event) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(seller)
     })
-        .then(response => response.json())
+        .then(response => response.json())  // Now expecting JSON response
         .then(result => {
-            // Check for specific success or error messages
             if (result.success) {
                 alert("Login successful!");
-                document.getElementById('message').innerText = 'Login successful!';
-                // Redirect or update UI
+                document.getElementById('message').innerText = result.message;
+                // Redirect or update UI as needed
             } else {
                 document.getElementById('message').innerText = result.message || 'Login failed. Please try again.';
             }
