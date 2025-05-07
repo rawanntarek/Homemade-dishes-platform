@@ -14,10 +14,10 @@ import java.util.List;
 @Stateless
 public class AdminBean {
     @EJB
-    com.example.adminsrvc.EJB.DBConnection dbConnection;
+    DBConnection dbConnection;
 
     @EJB
-    com.example.adminsrvc.EJB.PasswordGeneratorBean passwordGeneratorBean;
+    PasswordGeneratorBean passwordGeneratorBean;
 
     public List<String> createSellerAccount(List<String> uniqueCompanyNames) {
         List<String>response=new ArrayList<>();
