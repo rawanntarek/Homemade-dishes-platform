@@ -11,7 +11,7 @@
   </properties>
 
   <modules>
-    <module>admin-service</module>
+    <module>admin-srvc</module>
     <module>seller-service</module>
     <module>customer-service</module>
     <module>order-service</module>

@@ -14,8 +14,9 @@ public class DBConnection {
 
     @PostConstruct //method called immediately after bean initialized
     public void init() {
-        mongo = MongoClients.create("mongodb+srv://rawaaan245:123456@adminservicedb.8frdbwk.mongodb.net/?retryWrites=true&w=majority&appName=AdminServiceDB");
-        db = mongo.getDatabase("AdminServiceDB");
+        String url="mongodb://rawaaan245:rawantarek2003@ac-fxluyud-shard-00-00.8frdbwk.mongodb.net:27017,ac-fxluyud-shard-00-01.8frdbwk.mongodb.net:27017,ac-fxluyud-shard-00-02.8frdbwk.mongodb.net:27017/?ssl=true&replicaSet=atlas-k3ni61-shard-0&authSource=admin&retryWrites=true&w=majority&appName=AdminServiceDB";
+        mongo = MongoClients.create(url);
+        db = mongo.getDatabase("adminservicedb");
     }
 
     public MongoDatabase getDb() {

@@ -20,20 +20,25 @@ public class AdminEndpoint {
     @POST
     @Path("/createSellers")
     public Response createSellerAccounts(List<String> names) {
-        adminBean.createSellerAccount(names);
-        return Response.status(Response.Status.CREATED).entity("Seller accounts created").build();
+        List<String> result = adminBean.createSellerAccount(names);
+        return Response.status(Response.Status.OK).entity(result).build();
     }
-
     @GET
     @Path("/getSellers")
-    public List<Seller> getSellers() {
-        return adminBean.ListSellerAccounts();
+    public Response getSellers() {
+        if(adminBean.ListSellerAccounts().size() == 0) {
+            return Response.ok("No sellers found").build();
+        }
+        return Response.ok(adminBean.ListSellerAccounts()).build();
     }
 
     @GET
     @Path("/getCustomers")
-    public List<Customer> getCustomers() {
-        return adminBean.ListCustomerAccounts();
+    public Response getCustomers() {
+        if(adminBean.ListCustomerAccounts().size() == 0) {
+            return Response.ok("No Customers found").build();
+        }
+        return Response.ok(adminBean.ListCustomerAccounts()).build();
     }
 
     @GET

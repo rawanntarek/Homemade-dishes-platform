@@ -3,6 +3,7 @@ package com.example.adminsrvc.ejb;
 import com.example.adminsrvc.entities.Customer;
 import com.example.adminsrvc.entities.Seller;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.Filters;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
 import org.bson.Document;
@@ -18,14 +19,21 @@ public class AdminBean {
     @EJB
     PasswordGeneratorBean passwordGeneratorBean;
 
-    public void createSellerAccount(List<String> uniqueCompanyNames) {
+    public List<String> createSellerAccount(List<String> uniqueCompanyNames) {
+        List<String>response=new ArrayList<>();
         MongoCollection<Document> collection = dbConnection.getDb().getCollection("sellers");
         for (String uniqueCompanyName : uniqueCompanyNames) {
+            boolean exists = collection.find(Filters.eq("companyName", uniqueCompanyName)).first() != null;
+            if (exists) {
+                response.add("Company with name " + uniqueCompanyName + " is already added.");
+                continue;
+            }
             String companyPassword = passwordGeneratorBean.generatePassword(10);
             Document doc = new Document("companyName", uniqueCompanyName).append("companyPassword", companyPassword);
             collection.insertOne(doc);
-            System.out.println("created account for company: " + uniqueCompanyName + " and password: " + companyPassword);
+            response.add("created account for company: " + uniqueCompanyName + " and password: " + companyPassword);
         }
+        return response;
     }
 
     public List<Seller> ListSellerAccounts() {
