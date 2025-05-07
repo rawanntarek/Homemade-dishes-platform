@@ -12,7 +12,7 @@ public class SellerService {
         MongoCollection<Document> collection = SellerDB.getDb().getCollection("accounts");
 
         Document doc = new Document("companyName", seller.getCompanyName())
-                .append("password", seller.getPassword());
+                .append("companyPassword", seller.getPassword());
         collection.insertOne(doc);
     }
 

@@ -8,7 +8,7 @@ public class SellerDB {
     private static MongoDatabase db;
 
     static {
-        MongoClient mongoClient = MongoClients.create("mongodb+srv://rawaaan245:rawantarek2003@sellerservicedb.0m3nd6n.mongodb.net/?retryWrites=true&w=majority&appName=SellerServiceDB");
+        MongoClient mongoClient = MongoClients.create("mongodb+srv://rawaaan245:rawantarek2307@sellerservicedb.0m3nd6n.mongodb.net/?retryWrites=true&w=majority&appName=SellerServiceDB");
         db = mongoClient.getDatabase("sellerservicedb");
     }
 

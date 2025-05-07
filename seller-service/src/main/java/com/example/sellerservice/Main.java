@@ -18,7 +18,6 @@ public class Main {
     public static void main(String[] args) {
         final HttpServer server = startServer();
         System.out.printf("Server started at %s%nPress Ctrl+C to stop...%n", BASE_URI);
-
         // Keep server running
         try {
             Thread.currentThread().join(); // keep server alive
