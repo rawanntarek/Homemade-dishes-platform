@@ -29,5 +29,11 @@ public class SellerService {
         }
     }
 
+    public void AddDishes(Dish dish) {
+        MongoCollection<Document> collection = SellerDB.getDb().getCollection("dishes");
+        Document doc=new Document("DishName",dish.getName()).append("DishPrice",dish.getPrice()).append("DishAmount",dish.getAmount());
+        collection.insertOne(doc);
+    }
+
 
 }
