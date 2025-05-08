@@ -4,14 +4,16 @@ public class Dish {
     public String name;
     public int amount;
     public double price;
+    public String companyName;
     public Dish()
     {
 
     }
-    public Dish(String name, int amount, double price) {
+    public Dish(String name, int amount, double price, String companyName) {
         this.name = name;
         this.amount = amount;
         this.price = price;
+        this.companyName = companyName;
     }
 
     public double getPrice() {
@@ -31,5 +33,11 @@ public class Dish {
     }
     public void setAmount(int amount) {
         this.amount = amount;
+    }
+    public String getCompanyName() {
+        return companyName;
+    }
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 }

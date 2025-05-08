@@ -7,7 +7,7 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-
+import java.util.List;
 
 @Path("/sellers")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -31,20 +31,43 @@ public class SellerEndpoint {
 
         // Check if the login was successful and return the appropriate response
         if (loginMessage.equals("Login successful!")) {
-            // Return the response as a valid JSON object
             return Response.ok().entity("{\"success\": true, \"message\": \"Login successful!\"}").build();
         } else {
-            // Return the response as a valid JSON object for failure
             return Response.status(Response.Status.UNAUTHORIZED)
                     .entity("{\"success\": false, \"message\": \"" + loginMessage + "\"}")
                     .build();
         }
     }
-    @Path("addDish")
+
+    @Path("/addDish")
     @POST
-    public Response addDish(Dish dish) {
+    public Response addDish(Dish dish, @QueryParam("companyName") String companyName) {
+        // Check if company name is provided
+        if (companyName == null || companyName.isEmpty()) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity("{\"success\": false, \"message\": \"Company name is required.\"}")
+                    .build();
+        }
+
+        // Add dish with the provided company name
+        dish.setCompanyName(companyName);
         sellerService.AddDishes(dish);
-        return Response.ok().build();
+
+        return Response.ok().entity("{\"success\": true, \"message\": \"Dish added successfully.\"}").build();
     }
 
+    @Path("/getDishes")
+    @GET
+    public Response getDishes(@QueryParam("companyName") String companyName) {
+        // Check if company name is provided
+        if (companyName == null || companyName.isEmpty()) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity("{\"success\": false, \"message\": \"Company name is required.\"}")
+                    .build();
+        }
+
+        // Get dishes for the provided company name
+        List<Dish> dishes = sellerService.getDishesByCompany(companyName);
+        return Response.ok().entity(dishes).build();
+    }
 }
