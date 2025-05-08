@@ -11,7 +11,7 @@ public class Main {
 
     // Start the server
     public static HttpServer startServer() {
-        final ResourceConfig rc = new ResourceConfig().packages("com.example.sellerservice.endpoints");
+        final ResourceConfig rc = new ResourceConfig().packages("com.example.sellerservice.endpoints").register(com.example.sellerservice.endpoints.SellerEndpoint.class);
         return GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), rc);
     }
 
