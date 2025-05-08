@@ -1,6 +1,7 @@
 package com.example.sellerservice;
 
 import com.mongodb.client.MongoCollection;
+import jakarta.ws.rs.core.Response;
 import org.bson.Document;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,5 +55,34 @@ public class SellerService {
 
         }
         return dishes;
+    }
+    public Response updateDishes(Dish dish, String companyName, String dishName) {
+        MongoCollection<Document> collection = SellerDB.getDb().getCollection("dishes");
+        Document filter = new Document("DishName", dish.getName())
+                .append("CompanyName", companyName);
+        Document dishExists=collection.find(filter).first();
+        if(dishExists==null) {
+            return Response.noContent().build();
+        }
+        Document updateFields=new Document();
+
+        if (dish.getName() != null && !dish.getName().isEmpty()) {
+            updateFields.append("DishName", dish.getName());  // Update the name if it's provided
+        }
+        if (dish.getPrice() != 0) {  // Assuming price can't be zero or handle the null case
+            updateFields.append("DishPrice", dish.getPrice());  // Update the price if it's provided
+        }
+        if (dish.getAmount() != 0) {  // Assuming amount can't be zero or handle the null case
+            updateFields.append("DishAmount", dish.getAmount());  // Update the amount if it's provided
+        }
+        if(updateFields.isEmpty())
+        {
+            System.out.println("Nothing to update");
+        }
+        Document update = new Document("$set", updateFields);
+        collection.updateOne(filter, update);
+        return Response.status(Response.Status.OK).build();
+
+
     }
 }

@@ -70,4 +70,21 @@ public class SellerEndpoint {
         List<Dish> dishes = sellerService.getDishesByCompany(companyName);
         return Response.ok().entity(dishes).build();
     }
+    @PUT
+    @Path("/updateDish")
+    public Response updateDish(Dish dish, @QueryParam("companyName") String companyName,@QueryParam("dishName")String dishName) {
+        SellerService sellerService = new SellerService();
+        try{
+            Response response=sellerService.updateDishes(dish, companyName,dishName);
+            return response;
+
+        }
+        catch(Exception e){
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                    .entity("{\"success\": false, \"message\": \"Failed to update dish. Please try again.\"}")
+                    .build();
+        }
+
+
+    }
 }

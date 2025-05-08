@@ -22,6 +22,7 @@ function loginSeller(event) {
             if (result.success) {
                 alert("Login successful!");
                 document.getElementById('message').innerText = 'Login successful!';
+                localStorage.setItem('companyName', companyName);
                 window.location.href = "SellerDashboard.html";
                 // Redirect or update UI
                 document.getElementById('message').innerText = result.message;
