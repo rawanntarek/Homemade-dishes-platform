@@ -58,7 +58,7 @@ public class SellerService {
     }
     public Response updateDishes(Dish dish, String companyName, String dishName) {
         MongoCollection<Document> collection = SellerDB.getDb().getCollection("dishes");
-        Document filter = new Document("DishName", dish.getName())
+        Document filter = new Document("DishName", dishName)
                 .append("CompanyName", companyName);
         Document dishExists=collection.find(filter).first();
         if(dishExists==null) {
