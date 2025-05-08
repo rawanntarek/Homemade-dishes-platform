@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Dish</title>
+    <link rel="stylesheet" href="../CSS/UpdateDishes.css">
+    <script src="../JS/UpdateDishes.js" defer></script>
+</head>
+<body>
+<div class="container">
+    <h1>Update Dish</h1>
+
+    <form id="updateDishForm">
+        <label for="dishName">Dish Name</label>
+        <input type="text" id="dishName" name="dishName" required placeholder="Enter the dish name to update">
+
+        <label for="newName">New Dish Name (Optional)</label>
+        <input type="text" id="newName" name="newName" placeholder="Enter new dish name">
+
+        <label for="newPrice">New Price (Optional)</label>
+        <input type="number" id="newPrice" name="newPrice" placeholder="Enter new dish price">
+
+        <label for="newAmount">New Amount (Optional)</label>
+        <input type="number" id="newAmount" name="newAmount" placeholder="Enter new dish amount">
+
+        <button type="submit">Update Dish</button>
+    </form>
+
+    <p id="message"></p>
+</div>
+</body>
+</html>
