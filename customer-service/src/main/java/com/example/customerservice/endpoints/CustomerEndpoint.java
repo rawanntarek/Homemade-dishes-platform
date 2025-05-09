@@ -14,12 +14,29 @@ public class CustomerEndpoint {
     @Path("/register")
     @POST
     public Response register(Customer customer) {
-        customerService.RegisterCustomer(customer);
-        return Response.ok().build();
+        boolean registerStatus=customerService.RegisterCustomer(customer);
+        if(registerStatus)
+        {
+            return Response.ok().build();
+
+        }
+        return Response.status(Response.Status.UNAUTHORIZED).build();
     }
     @Path("/test")
     @GET
     public Response test() {
         return Response.ok().build();
+    }
+    @Path("/login")
+    @POST
+    public Response login(Customer customer) {
+        boolean loginStatus=customerService.LoginCustomer(customer);
+        if(loginStatus)
+        {
+            return Response.ok().build();
+        }
+        else {
+            return Response.status(Response.Status.UNAUTHORIZED).build();
+        }
     }
 }
