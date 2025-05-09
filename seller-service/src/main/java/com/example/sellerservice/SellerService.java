@@ -67,6 +67,7 @@ public class SellerService {
             Dish dish = new Dish();
             dish.setName(doc.getString("DishName"));
             dish.setPrice(doc.getDouble("DishPrice"));
+            dish.setAmount(doc.getInteger("DishAmount"));
             dish.setCompanyName(doc.getString("CompanyName"));
             dishes.add(dish);
         }

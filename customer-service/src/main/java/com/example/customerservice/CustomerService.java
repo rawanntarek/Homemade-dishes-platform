@@ -9,6 +9,7 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.bson.Document;
 
+import javax.print.Doc;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,6 +52,20 @@ public class CustomerService {
             response.close();
             return new ArrayList<>();
         }
+
+    }
+    public void storeOrder(Order order) {
+        MongoCollection<Document> collection=CustomerDB.getDb().getCollection("orders");
+        Document doc=new Document().append("customerName", order.getCustomerName())
+                .append("status", order.getStatus());
+        List<Document> dishes=new ArrayList<>();
+        for(dish_order d:order.getDishes())
+        {
+            Document dish=new Document().append("dishName", d.getDishName()).append("amount", d.getAmount()).append("price", d.getPrice()).append("companyName", d.getCompanyName());
+            dishes.add(dish);
+        }
+        doc.append("dishes", dishes);
+        collection.insertOne(doc);
 
     }
 }

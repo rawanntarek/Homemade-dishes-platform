@@ -57,10 +57,11 @@ public class CustomerEndpoint {
     }
     @Path("/PlaceOrder")
     @POST
-    public Response PlaceOrder(List<Order> orders) {
+    public Response PlaceOrder(Order order) {
 
 
-        orderPublisher.placeOrder(orders);
+        orderPublisher.placeOrder(order);
+        customerService.storeOrder(order);
         return Response.ok().build();
     }
 }

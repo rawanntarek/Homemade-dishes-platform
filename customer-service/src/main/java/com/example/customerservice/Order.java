@@ -1,34 +1,34 @@
 package com.example.customerservice;
 
+import java.util.List;
+
 public class Order {
-private String companyName;
-private String dishName;
-private int amount;
-private double price;
+    private String customerName;
+    private List<dish_order> dishes;
+private String status;
 public Order()
 {}
-public Order(String companyName, String dishName, int amount, double price) {
-    this.dishName = dishName;
-    this.amount = amount;
-    this.price = price;
-    this.companyName = companyName;
+public Order(String customerName, List<dish_order> dishes, String status) {
+    this.customerName = customerName;
+    this.dishes = dishes;
+    this.status = "pending";
 }
-public String getCompanyName() {
-    return companyName;
+public String getCustomerName() {
+    return customerName;
 }
-public double getPrice() {
-    return price;
+public void setCustomerName(String customerName) {
+    this.customerName = customerName;
 }
-public void setPrice(double price) {
-    this.price = price;
+public List<dish_order> getDishes() {
+    return dishes;
 }
-public void setCompanyName(String companyName) {
-    this.companyName = companyName;
+public void setDishes(List<dish_order> dishes) {
+    this.dishes = dishes;
 }
-public String getDishName() {
-    return dishName;
+public String getStatus() {
+    return status;
 }
-public int getAmount() {
-    return amount;
+public void setStatus(String status) {
+    this.status = status;
 }
 }
