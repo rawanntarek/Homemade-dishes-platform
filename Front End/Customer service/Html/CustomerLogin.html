@@ -1,0 +1,21 @@
+<html>
+<head>
+    <title>Customer Login</title>
+    <link rel="stylesheet" type="text/css" href="../CSS/customerLogin.css">
+    <script src="../JS/customerLogin.js"></script>
+</head>
+<body>
+<h1>Customer Login</h1>
+<p>Fill in the form below to log into your customer account.</p>
+<form id="loginForm" onsubmit="return loginCustomer(event)">
+    <label for="username">Username:</label><br>
+    <input type="text" id="username" name="username" placeholder="Enter your Username" required><br><br>
+
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password" placeholder="Enter your password" required><br><br>
+
+    <input type="submit" value="Login">
+</form>
+<div id="message"></div>
+</body>
+</html>

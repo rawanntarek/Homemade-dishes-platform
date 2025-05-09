@@ -6,7 +6,7 @@ import org.bson.Document;
 public class CustomerService {
     public boolean RegisterCustomer(Customer customer) {
         MongoCollection<Document> collection=CustomerDB.getDb().getCollection("customers");
-        Document usernameExists=new Document("username", customer.getUsername());
+        Document usernameExists=collection.find(new Document("username", customer.getUsername())).first();
         if(usernameExists!=null)
         {
             return false;
