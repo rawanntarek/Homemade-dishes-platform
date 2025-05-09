@@ -8,6 +8,11 @@
   <name>customer-service Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>
+    <dependency>
+      <groupId>com.rabbitmq</groupId>
+      <artifactId>amqp-client</artifactId>
+      <version>5.16.0</version> <!-- Use the latest stable version -->
+    </dependency>
 
     <dependency>
       <groupId>junit</groupId>
