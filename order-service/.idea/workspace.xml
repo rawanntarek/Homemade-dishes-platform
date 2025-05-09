@@ -5,20 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="18850900-b96b-402e-9200-5ab7b0986795" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../customer-service/lib/amqp-client-5.16.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../customer-service/lib/slf4j-api-1.7.36.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../customer-service/lib/slf4j-simple-1.7.36.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../customer-service/src/main/java/com/example/customerservice/Order.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../customer-service/src/main/java/com/example/customerservice/OrderPublisher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../customer-service/src/main/java/com/example/customerservice/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../customer-service/src/main/java/com/example/customerservice/CustomerService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customer-service/amqp-client-5.16.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customer-service/slf4j-api-1.7.36.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customer-service/slf4j-simple-1.7.36.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/orderservice/OrderSubscriber.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../customer-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../customer-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../customer-service/src/main/java/com/example/customerservice/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/../customer-service/src/main/java/com/example/customerservice/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../customer-service/src/main/java/com/example/customerservice/endpoints/CustomerEndpoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/../customer-service/src/main/java/com/example/customerservice/endpoints/CustomerEndpoint.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../seller-service/src/main/java/com/example/sellerservice/SellerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../seller-service/src/main/java/com/example/sellerservice/SellerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../seller-service/src/main/java/com/example/sellerservice/endpoints/SellerEndpoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/../seller-service/src/main/java/com/example/sellerservice/endpoints/SellerEndpoint.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -45,17 +51,21 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.OrderSubscriber.executor": "Run",
     "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "G:/year 4 semester 2/Distributed Systems/Homemade-dishes-platform/order-service",
+    "last_opened_file_path": "G:/year 4 semester 2/Distributed Systems/Homemade-dishes-platform/order-service/slf4j-simple-1.7.36.jar",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -82,6 +92,7 @@
       <updated>1746803190630</updated>
       <workItem from="1746803191604" duration="179000" />
       <workItem from="1746803516882" duration="625000" />
+      <workItem from="1746810074703" duration="1736000" />
     </task>
     <servers />
   </component>

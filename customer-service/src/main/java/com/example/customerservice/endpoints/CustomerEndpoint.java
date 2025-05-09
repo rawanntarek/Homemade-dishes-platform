@@ -1,8 +1,6 @@
 package com.example.customerservice.endpoints;
 
-import com.example.customerservice.Customer;
-import com.example.customerservice.CustomerService;
-import com.example.customerservice.Dish;
+import com.example.customerservice.*;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -14,6 +12,9 @@ import java.util.List;
 @Produces(MediaType.APPLICATION_JSON)
 public class CustomerEndpoint {
     CustomerService customerService=new CustomerService();
+    OrderPublisher orderPublisher=new OrderPublisher();
+    private List<Dish> avaialableDishes;
+
     @Path("/register")
     @POST
     public Response register(Customer customer) {
@@ -53,5 +54,13 @@ public class CustomerEndpoint {
         else {
             return Response.ok(dishes).build();
         }
+    }
+    @Path("/PlaceOrder")
+    @POST
+    public Response PlaceOrder(List<Order> orders) {
+
+
+        orderPublisher.placeOrder(orders);
+        return Response.ok().build();
     }
 }
