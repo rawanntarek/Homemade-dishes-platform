@@ -28,13 +28,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     <p><strong>Dish Name:</strong> ${dish.name}</p>
                     <p><strong>Price:</strong> $${dish.price}</p>
-                     <button onclick="makeOrder('${dish.name}', ${dish.price})">Make an Order</button>
+                     <input type="number" id="quantity-${dish.name}" min="1" value="1">
+                        <button onclick="addToOrder('${dish.name}', ${dish.price})">Add to Order</button>
+               
                 `;
                 container.appendChild(card);
             });
         })
-        .catch(error => {
-            console.error("Error fetching dishes:", error);
-            document.getElementById("dishesContainer").innerHTML = "<p>Error loading dishes.</p>";
-        });
+       .catch(error => console.error("Error fetching dishes:", error));
+       
+        
 });

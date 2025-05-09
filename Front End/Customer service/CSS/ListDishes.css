@@ -39,6 +39,12 @@ button {
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
 }
-
+input[type="number"]{
+    width: 30%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
 
 
