@@ -5,11 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="18850900-b96b-402e-9200-5ab7b0986795" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customer-service/lib/amqp-client-5.16.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customer-service/lib/slf4j-api-1.7.36.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customer-service/lib/slf4j-simple-1.7.36.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customer-service/src/main/java/com/example/customerservice/Order.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customer-service/src/main/java/com/example/customerservice/OrderPublisher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../customer-service/src/main/java/com/example/customerservice/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../customer-service/src/main/java/com/example/customerservice/CustomerService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../seller-service/src/main/java/com/example/sellerservice/SellerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../seller-service/src/main/java/com/example/sellerservice/SellerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../seller-service/src/main/java/com/example/sellerservice/endpoints/SellerEndpoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/../seller-service/src/main/java/com/example/sellerservice/endpoints/SellerEndpoint.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,21 +23,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "rawanntarek"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;rawanntarek&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/rawanntarek/Homemade-dishes-platform.git",
-    "accountId": "691f3f88-6c94-4bbc-89bf-827255ac06ca"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/rawanntarek/Homemade-dishes-platform.git&quot;,
+    &quot;accountId&quot;: &quot;691f3f88-6c94-4bbc-89bf-827255ac06ca&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2wrcZVlkSOsUCiclRZZjxu5s37e" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -47,6 +51,10 @@
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "G:/year 4 semester 2/Distributed Systems/Homemade-dishes-platform/order-service",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
@@ -73,6 +81,7 @@
       <option name="presentableId" value="Default" />
       <updated>1746803190630</updated>
       <workItem from="1746803191604" duration="179000" />
+      <workItem from="1746803516882" duration="625000" />
     </task>
     <servers />
   </component>

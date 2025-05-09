@@ -87,4 +87,15 @@ public class SellerEndpoint {
 
 
     }
+    @Path("/getAllDishes")
+    @GET
+    public Response getAllDishes() {
+        List<Dish> dishes = sellerService.getDishes();
+        if(dishes.size()>0){
+            return Response.ok().entity(dishes).build();
+        }
+        else{
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+    }
 }

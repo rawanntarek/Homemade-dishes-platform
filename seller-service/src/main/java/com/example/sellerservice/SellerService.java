@@ -3,6 +3,10 @@ package com.example.sellerservice;
 import com.mongodb.client.MongoCollection;
 import jakarta.ws.rs.core.Response;
 import org.bson.Document;
+
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,6 +57,18 @@ public class SellerService {
             dish.setAmount(doc.getInteger("DishAmount"));
             dishes.add(dish);
 
+        }
+        return dishes;
+    }
+    public List<Dish> getDishes() {
+        MongoCollection<Document> collection = SellerDB.getDb().getCollection("dishes");
+        List<Dish> dishes=new ArrayList<>();
+        for (Document doc : collection.find()) {
+            Dish dish = new Dish();
+            dish.setName(doc.getString("DishName"));
+            dish.setPrice(doc.getDouble("DishPrice"));
+            dish.setCompanyName(doc.getString("CompanyName"));
+            dishes.add(dish);
         }
         return dishes;
     }

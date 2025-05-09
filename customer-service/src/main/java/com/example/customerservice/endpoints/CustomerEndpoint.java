@@ -2,9 +2,12 @@ package com.example.customerservice.endpoints;
 
 import com.example.customerservice.Customer;
 import com.example.customerservice.CustomerService;
+import com.example.customerservice.Dish;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+
+import java.util.List;
 
 @Path("/customers")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -38,5 +41,11 @@ public class CustomerEndpoint {
         else {
             return Response.status(Response.Status.UNAUTHORIZED).build();
         }
+    }
+    @Path("/getAllDishes")
+    @GET
+    public Response getAllDishes() {
+        List<Dish> dishes=customerService.getDishes();
+        return Response.ok(dishes).build();
     }
 }
