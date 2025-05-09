@@ -49,7 +49,7 @@ public class CustomerService {
             return dishes;
         } else {
             response.close();
-            return new ArrayList<>(); 
+            return new ArrayList<>();
         }
 
     }

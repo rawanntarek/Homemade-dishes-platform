@@ -46,6 +46,12 @@ public class CustomerEndpoint {
     @GET
     public Response getAllDishes() {
         List<Dish> dishes=customerService.getDishes();
-        return Response.ok(dishes).build();
+        if(dishes.isEmpty())
+        {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+        else {
+            return Response.ok(dishes).build();
+        }
     }
 }
