@@ -1,13 +1,13 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #fff6fd;
+    background: url("../../pics/background.png") repeat;
     margin: 0;
     padding: 0;
     text-align: center;
 }
 
 h1 {
-    background-color: #b50073;
+    background-color: #4faca3;
     color: white;
     padding: 20px 0;
     margin: 0;
@@ -46,7 +46,7 @@ h1 {
 }
 
 button {
-    background-color: #ffb4db;
+    background-color: #8bd7d0;
     border: none;
     color: white;
     padding: 12px 18px;

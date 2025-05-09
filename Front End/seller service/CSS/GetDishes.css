@@ -1,13 +1,13 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #fff6fd;
+    background: url("../../pics/background.png") repeat;
     margin: 0;
+    padding: 0;
     text-align: center;
-    color: #333;
 }
 
 h1 {
-    background-color: #b50073;
+    background-color: #4faca3;
     color: white;
     padding: 20px 0;
     margin: 0;

@@ -1,13 +1,14 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #fff6fd;
+    background: url("../../pics/background.png") repeat;
     margin: 0;
+    padding: 0;
     text-align: center;
-    color: #333;
 }
 
 h1 {
-    background-color: #b50073;
+    background-color: 
+    #4faca3;
     color: white;
     padding: 20px 0;
     margin: 0;
@@ -15,8 +16,10 @@ h1 {
 }
 
 p {
-    color: #7f8c8d;
+    color: #000000;
     font-size: 15px;
+    font-weight: bold;
+    background-color: #fff;
 }
 
 form {
@@ -56,7 +59,11 @@ input[type="password"]{
     font-size: 14px;
 }
 input[type="submit"] {
-    background-color:  #ffb4db;
+    background-color:  
+    
+    #8bd7d0
+
+;
     color: white;
     padding: 12px 20px;
     border: none;
