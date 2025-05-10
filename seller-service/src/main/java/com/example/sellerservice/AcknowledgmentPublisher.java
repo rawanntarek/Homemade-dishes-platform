@@ -1,5 +1,6 @@
 package com.example.sellerservice;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rabbitmq.client.BuiltinExchangeType;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
@@ -21,7 +22,10 @@ public class AcknowledgmentPublisher {
             channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.FANOUT);
             channel.queueDeclare(QUEUE_NAME, true, false, false, null);
             channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, "");
-            String confirmation_message="Order ID: "+orderID+" Customer name: "+customerName+" your Order status became: "+status+" stock Availability: "+message;
+            ConfirmationOrder confirmationOrder = new ConfirmationOrder(orderID, customerName, status, message);
+            ObjectMapper objectMapper = new ObjectMapper();
+            String confirmation_message = objectMapper.writeValueAsString(confirmationOrder);
+
             channel.basicPublish(EXCHANGE_NAME,"",null,confirmation_message.getBytes());
             System.out.println("sent confirmation message"+confirmation_message);
         }
