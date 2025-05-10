@@ -11,7 +11,6 @@ import java.util.concurrent.TimeoutException;
 public class AcknowledgmentSubscriber {
 
     private static final String EXCHANGE_NAME="confirmation";
-
     public static void RecieveConfirmation()throws IOException, TimeoutException {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");

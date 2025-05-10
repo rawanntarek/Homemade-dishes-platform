@@ -22,7 +22,7 @@ public class AcknowledgmentPublisher {
             channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.FANOUT);
             channel.queueDeclare(QUEUE_NAME, true, false, false, null);
             channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, "");
-            ConfirmationOrder confirmationOrder = new ConfirmationOrder(orderID, customerName, status, message);
+            ConfirmationOrder confirmationOrder = new ConfirmationOrder(customerName, status, message, orderID);
             ObjectMapper objectMapper = new ObjectMapper();
             String confirmation_message = objectMapper.writeValueAsString(confirmationOrder);
 
