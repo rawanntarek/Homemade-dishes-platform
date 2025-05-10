@@ -8,8 +8,8 @@ import java.util.UUID;
 import java.util.concurrent.TimeoutException;
 
 public class OrderPublisher {
-    private static final AcknowledgmentSubscriber subscriber = new AcknowledgmentSubscriber();
 private static final String EXCHANGE_NAME = "orders";
+
 public static void placeOrder(Order order) {
     if(order.getOrderId() == null) {
         order.setOrderId(UUID.randomUUID().toString());
@@ -24,13 +24,7 @@ public static void placeOrder(Order order) {
         String orderMessage=mapper.writeValueAsString(order);
         channel.basicPublish(EXCHANGE_NAME,"",null,orderMessage.getBytes());
         System.out.println("sent order with id: "+order.getOrderId());
-        new Thread(() -> {
-            try {
-                subscriber.RecieveConfirmation();
-            } catch (IOException | TimeoutException e) {
-                e.printStackTrace();
-            }
-        }).start();
+        AcknowledgmentSubscriber.RecieveConfirmation();
             }
     catch(Exception e){
         e.printStackTrace();

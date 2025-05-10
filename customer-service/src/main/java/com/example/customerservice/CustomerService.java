@@ -24,7 +24,8 @@ public class CustomerService {
             return false;
         }
         Document doc = new Document("username", customer.getUsername())
-                .append("password", customer.getPassword());
+                .append("password", customer.getPassword())
+                .append("balance", 100);
         collection.insertOne(doc);
         return true;
 
