@@ -57,7 +57,8 @@ public class CustomerService {
     public void storeOrder(Order order) {
         MongoCollection<Document> collection=CustomerDB.getDb().getCollection("orders");
         Document doc=new Document().append("customerName", order.getCustomerName())
-                .append("status", order.getStatus());
+                .append("status", order.getStatus())
+                .append("orderId", order.getOrderId());
         List<Document> dishes=new ArrayList<>();
         for(dish_order d:order.getDishes())
         {

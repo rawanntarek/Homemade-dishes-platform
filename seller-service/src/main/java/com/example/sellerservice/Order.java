@@ -1,12 +1,13 @@
-package com.example.customerservice;
+package com.example.sellerservice;
 
 import java.util.List;
 
 public class Order {
-    private String orderId;
     private String customerName;
     private List<dish_order> dishes;
 private String status;
+private String orderId;
+
 public Order()
 {}
 public Order(String customerName, List<dish_order> dishes, String status, String orderId) {
@@ -15,10 +16,12 @@ public Order(String customerName, List<dish_order> dishes, String status, String
     this.status = "pending";
     this.orderId = orderId;
 }
-public String getOrderId() {
+public String getOrderId()
+{
     return orderId;
 }
-public void setOrderId(String orderId) {
+public void setOrderId(String orderId)
+{
     this.orderId = orderId;
 }
 public String getCustomerName() {

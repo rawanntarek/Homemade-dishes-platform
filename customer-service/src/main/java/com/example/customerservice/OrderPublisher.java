@@ -3,10 +3,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rabbitmq.client.*;
 
 import java.util.List;
+import java.util.UUID;
 
 public class OrderPublisher {
 private static final String EXCHANGE_NAME = "orders";
 public static void placeOrder(Order order) {
+    if(order.getOrderId() == null) {
+        order.setOrderId(UUID.randomUUID().toString());
+    }
     ConnectionFactory factory=new ConnectionFactory();
     factory.setHost("localhost");
     try(Connection connection=factory.newConnection();
@@ -16,7 +20,7 @@ public static void placeOrder(Order order) {
         ObjectMapper mapper=new ObjectMapper();
         String orderMessage=mapper.writeValueAsString(order);
         channel.basicPublish(EXCHANGE_NAME,"",null,orderMessage.getBytes());
-
+        System.out.println("sent order with id: "+order.getOrderId());
             }
     catch(Exception e){
         e.printStackTrace();
