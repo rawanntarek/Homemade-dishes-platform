@@ -19,9 +19,9 @@ public class AcknowledgmentSubscriber {
             channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.FANOUT);
             String queueName=channel.queueDeclare().getQueue();
             channel.queueBind(queueName,EXCHANGE_NAME,"");
-            System.out.println("Waiting for messages");
+            System.out.println("Waiting for confirmation messages");
             DeliverCallback deliverCallback = (consumerTag, delivery) -> {
-                String message = new String(delivery.getBody());
+                String message = new String(delivery.getBody(),"UTF-8");
                 System.out.println("Received '" + message + "'");
                 try {
                     ObjectMapper mapper = new ObjectMapper();
@@ -30,6 +30,7 @@ public class AcknowledgmentSubscriber {
                     String customerName = confirmationOrder.getCustomerName();
                     String orderMessage = confirmationOrder.getMessage();
                     String status=confirmationOrder.getStatus();
+                    System.out.println("received '" + orderId + "'"+customerName+":"+orderMessage+":"+status);
                     updateOrderInDatabase(confirmationOrder);
 
                 }
@@ -38,6 +39,7 @@ public class AcknowledgmentSubscriber {
                 }
 
             };
+            channel.basicConsume(queueName, true, deliverCallback, consumerTag -> {});
         }
     }
     private static void updateOrderInDatabase(ConfirmationOrder confirmationOrder) {

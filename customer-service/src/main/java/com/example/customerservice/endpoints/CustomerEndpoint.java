@@ -5,7 +5,9 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.TimeoutException;
 
 @Path("/customers")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -57,11 +59,13 @@ public class CustomerEndpoint {
     }
     @Path("/PlaceOrder")
     @POST
-    public Response PlaceOrder(Order order) {
+    public Response PlaceOrder(Order order) throws IOException, TimeoutException {
+        AcknowledgmentSubscriber as=new AcknowledgmentSubscriber();
 
 
         orderPublisher.placeOrder(order);
         customerService.storeOrder(order);
+        as.recieveConfirmation();
         return Response.ok().build();
     }
 }

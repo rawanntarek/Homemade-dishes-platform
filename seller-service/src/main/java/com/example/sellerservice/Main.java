@@ -10,51 +10,53 @@ import org.glassfish.jersey.server.ResourceConfig;
 
 import java.io.IOException;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeoutException;
 
 public class Main {
     public static final String BASE_URI = "http://localhost:8082/seller-service/api/";
     private static final String EXCHANGE_NAME = "orders";
-
+    static AcknowledgmentPublisher ap=new AcknowledgmentPublisher();
     public static boolean isThereAvaialbleStock(List<dish_order> dishes) {
         MongoCollection<Document> collection=SellerDB.getDb().getCollection("dishes");
-        for(dish_order dish:dishes)
-        {
-            Document doc=collection.find(new Document("\n" +
-                    "DishName",dish.getDishName()).append("companyName",dish.getCompanyName())).first();
+        for(dish_order dish:dishes) {
+            Document doc=collection.find(new Document("DishName",dish.getDishName()).append("CompanyName",dish.getCompanyName())).first();
             if(doc==null)
             {
+                System.out.println("Dish Not Found");
                 return false;
             }
-            int amountOfDishes=doc.getInteger("DishAmount");
-            if(dish.getAmount()>amountOfDishes)
+            int dishAmount=doc.getInteger("DishAmount");
+            System.out.println("Dish Amount: "+dishAmount);
+            if(dishAmount<dish.getAmount())
             {
                 return false;
             }
+
         }
         return true;
     }
-    public static void AcknowledgmentPublisher(String orderID,String customerName,String status,String message) throws IOException, TimeoutException {
-        ConnectionFactory connectionFactory = new ConnectionFactory();
-        connectionFactory.setHost("localhost");
-        try(Connection connection= connectionFactory.newConnection();
-        Channel channel= connection.createChannel())
-        {
-            String EXCHANGE_NAME="confirmation";
-            channel.exchangeDeclare(EXCHANGE_NAME,BuiltinExchangeType.FANOUT);
-            String confirmation_message="Order ID: "+orderID+" Customer name: "+customerName+" your Order status became: "+status+" stock Availability: "+message;
-            channel.basicPublish(EXCHANGE_NAME,"",null,confirmation_message.getBytes());
-            System.out.println("sent confirmation message to order id"+orderID +" customer name: "+customerName);
-        }
-    }
+
     public static void saveOrder(Order order,String status) {
         MongoCollection<Document> collection=SellerDB.getDb().getCollection("orders");
-        Document doc=new Document().append("orderId", order.getOrderId()).
+        Document doc=new Document()
+                .append("orderId", order.getOrderId()).
                 append("customerName",order.getCustomerName())
-                .append("dishes",order.getDishes())
                 .append("status",status);
+        List<Document> dishes=new ArrayList<>();
+        for(dish_order dish:order.getDishes())
+        {
+            Document dishDoc=new Document()
+                    .append("dishName",dish.getDishName())
+                    .append("companyName",dish.getCompanyName())
+                    .append("amount",dish.getAmount())
+                    .append("price",dish.getPrice());
+            dishes.add(dishDoc);
+        }
+        doc.append("dishes",dishes);
         collection.insertOne(doc);
+        System.out.println("Order added");
     }
     public static void orderSubscriber() throws IOException, TimeoutException {
         ConnectionFactory factory = new ConnectionFactory();
@@ -84,7 +86,7 @@ public class Main {
                     Status="rejected";
                     Message="there is no stock available";
                 }
-                AcknowledgmentPublisher(order.getOrderId(),order.getCustomerName(),Status,Message);
+                ap.sendConfirmation(order.getOrderId(),order.getCustomerName(),Status,Message);
                 saveOrder(order,Status);
             }catch (Exception e) {
                 e.printStackTrace();
