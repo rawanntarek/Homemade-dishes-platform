@@ -1,5 +1,6 @@
 package com.example.customerservice;
 
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
@@ -67,6 +68,35 @@ public class CustomerService {
         }
         doc.append("dishes", dishes);
         collection.insertOne(doc);
+
+    }
+    public List<Order> getPendingOrders(String customerName)
+    {
+        MongoCollection<Document> collection=CustomerDB.getDb().getCollection("orders");
+        FindIterable<Document>documents =collection.find(new Document("status", "pending").append("customerName", customerName));
+        List<Order> orders=new ArrayList<>();
+        for(Document doc:documents)
+        {
+            Order order=new Order();
+            order.setCustomerName(doc.getString("customerName"));
+            order.setOrderId(doc.getString("orderId"));
+            order.setStatus(doc.getString("status"));
+            List<dish_order>dishes=new ArrayList<>();
+
+            for(Document dish:(List<Document>)doc.get("dishes"))
+            {
+                dish_order d=new dish_order();
+                d.setDishName(dish.getString("dishName"));
+                d.setAmount(dish.getInteger("amount"));
+                d.setPrice(dish.getDouble("price"));
+                d.setCompanyName(dish.getString("companyName"));
+                dishes.add(d);
+            }
+            order.setDishes(dishes);
+            orders.add(order);
+        }
+        return orders;
+
 
     }
 }

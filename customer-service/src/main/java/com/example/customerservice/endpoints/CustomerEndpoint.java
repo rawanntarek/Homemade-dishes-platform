@@ -68,4 +68,15 @@ public class CustomerEndpoint {
         as.recieveConfirmation();
         return Response.ok().build();
     }
+    @Path("/getCurrentOrders")
+    @GET
+    public Response getCurrentOrders(@QueryParam("customerName")String customerName) {
+        if(customerName==null)
+        {
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        }
+        List<Order>orders=customerService.getPendingOrders(customerName);
+        return Response.ok(orders).build();
+
+    }
 }
