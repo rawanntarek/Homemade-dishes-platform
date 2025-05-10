@@ -10,6 +10,7 @@ import java.util.concurrent.TimeoutException;
 
 public class AcknowledgmentPublisher {
     private static final String EXCHANGE_NAME="confirmation";
+    private static final String QUEUE_NAME = "confirmation-queue";
 
     public static void sendConfirmation(String orderID,String customerName,String status,String message) throws IOException, TimeoutException {
         ConnectionFactory connectionFactory = new ConnectionFactory();
@@ -18,6 +19,8 @@ public class AcknowledgmentPublisher {
             Channel channel= connection.createChannel())
         {
             channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.FANOUT);
+            channel.queueDeclare(QUEUE_NAME, true, false, false, null);
+            channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, "");
             String confirmation_message="Order ID: "+orderID+" Customer name: "+customerName+" your Order status became: "+status+" stock Availability: "+message;
             channel.basicPublish(EXCHANGE_NAME,"",null,confirmation_message.getBytes());
             System.out.println("sent confirmation message"+confirmation_message);

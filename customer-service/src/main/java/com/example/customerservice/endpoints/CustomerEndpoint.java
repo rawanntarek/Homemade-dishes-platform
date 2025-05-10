@@ -60,12 +60,10 @@ public class CustomerEndpoint {
     @Path("/PlaceOrder")
     @POST
     public Response PlaceOrder(Order order) throws IOException, TimeoutException {
-        AcknowledgmentSubscriber as=new AcknowledgmentSubscriber();
 
 
         orderPublisher.placeOrder(order);
         customerService.storeOrder(order);
-        as.recieveConfirmation();
         return Response.ok().build();
     }
     @Path("/getCurrentOrders")
