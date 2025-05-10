@@ -16,6 +16,13 @@ public Order(String customerName, List<dish_order> dishes, String status, String
     this.status = "pending";
     this.orderId = orderId;
 }
+public double getTotalPrice() {
+    double totalPrice=0;
+    for (dish_order dish : dishes) {
+        totalPrice+=dish.getPrice()* dish.getAmount();
+    }
+    return totalPrice;
+}
 public String getOrderId()
 {
     return orderId;
