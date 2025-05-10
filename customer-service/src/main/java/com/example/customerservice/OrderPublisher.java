@@ -26,7 +26,6 @@ public static void placeOrder(Order order) {
         System.out.println("sent order with id: "+order.getOrderId());
         new Thread(() -> {
             try {
-                // Start receiving confirmation messages after sending the order
                 subscriber.RecieveConfirmation();
             } catch (IOException | TimeoutException e) {
                 e.printStackTrace();
