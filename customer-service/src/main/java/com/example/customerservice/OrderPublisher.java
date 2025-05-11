@@ -29,4 +29,26 @@ public static void placeOrder(Order order) {
         e.printStackTrace();
     }
 }
+public static void RecieveOrderConfirmation() throws IOException, TimeoutException {
+    ConnectionFactory factory=new ConnectionFactory();
+    factory.setHost("localhost");
+    Connection connection = factory.newConnection();
+    Channel channel = connection.createChannel();
+        String responseExchange="order_responses";
+        channel.exchangeDeclare(responseExchange,BuiltinExchangeType.FANOUT);
+        String queueName="confirmationsQueue";
+        channel.queueDeclare(queueName,true,false,false,null);
+        channel.queueBind(queueName,responseExchange,"");
+        System.out.println("waiting for confirmation");
+        DeliverCallback deliverCallback=(consumerTag,delivery)->{
+            String message=new String(delivery.getBody());
+            ObjectMapper objectMapper=new ObjectMapper();
+            ConfirmationOrder confirmationOrder=objectMapper.readValue(message,ConfirmationOrder.class);
+            System.out.println(confirmationOrder.getOrderId()+": "+confirmationOrder.getStatus()+": "+confirmationOrder.getMessage()+": "+confirmationOrder.getCustomerName());
+        };
+        channel.basicConsume(queueName,true,deliverCallback,consumerTag->{});
+    }
+
+
 }
+

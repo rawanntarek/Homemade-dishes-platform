@@ -27,9 +27,14 @@ public class Main {
         System.out.printf("Server started at %s%nPress Ctrl+C to stop...%n", BASE_URI);
 
         try {
+            OrderPublisher.RecieveOrderConfirmation();
             Thread.currentThread().join(); // keep server alive
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (TimeoutException e) {
+            throw new RuntimeException(e);
         }
     }
 }

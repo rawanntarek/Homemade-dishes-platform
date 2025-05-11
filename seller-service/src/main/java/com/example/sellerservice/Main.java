@@ -69,6 +69,24 @@ public class Main {
         DeliverCallback deliverCallback = (consumerTag, delivery) -> {
             String message = new String(delivery.getBody());
             System.out.println("Received '" + message + "'");
+            Order order=new ObjectMapper().readValue(message, Order.class);
+            boolean checkStock=isThereAvaialbleStock(order.getDishes());
+            String status="";
+            String Message="";
+            if(checkStock)
+            {
+                status="Completed";
+                Message="Instock";
+            }
+            else
+            {
+                status="rejected";
+                Message="out of stock";
+
+            }
+            saveOrder(order,status);
+            sendConfirmation(order,status,Message);
+
         };
         channel.basicConsume(queueName, true, deliverCallback, consumerTag -> {});
     }
@@ -76,6 +94,31 @@ public class Main {
     public static HttpServer startServer() {
         final ResourceConfig rc = new ResourceConfig().packages("com.example.sellerservice.endpoints");
         return GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), rc);
+    }
+    public static void sendConfirmation(Order order,String status,String message) {
+        try{
+            ConnectionFactory factory = new ConnectionFactory();
+            factory.setHost("localhost");
+            try(Connection connection= factory.newConnection();
+            Channel channel=connection.createChannel())
+            {
+                String responseExchange="order_responses";
+                String queueName="confirmationsQueue";
+                channel.queueBind(queueName,responseExchange,"");
+                channel.exchangeDeclare(responseExchange,BuiltinExchangeType.FANOUT);
+                ObjectMapper objectMapper=new ObjectMapper();
+                ConfirmationOrder confirmationOrder=new ConfirmationOrder(order.getCustomerName(), status, message, order.getOrderId());
+                String json=objectMapper.writeValueAsString(confirmationOrder);
+                channel.basicPublish(responseExchange, "", null, json.getBytes());
+                System.out.println("Confirmation Sent"+json);
+
+            }
+
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {
