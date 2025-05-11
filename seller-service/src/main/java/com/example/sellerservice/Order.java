@@ -8,6 +8,13 @@ public class Order {
 private String status;
 private String orderId;
 
+    public double getTotalPrice() {
+        double totalPrice=0;
+        for (dish_order dish : dishes) {
+            totalPrice+=dish.getPrice()* dish.getAmount();
+        }
+        return totalPrice;
+    }
 public Order()
 {}
 public Order(String customerName, List<dish_order> dishes, String status, String orderId) {

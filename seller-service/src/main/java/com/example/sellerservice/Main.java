@@ -17,6 +17,7 @@ import java.util.concurrent.TimeoutException;
 public class Main {
     public static final String BASE_URI = "http://localhost:8082/seller-service/api/";
     private static final String EXCHANGE_NAME = "orders";
+    private static final double Minimum_Charge = 100.0;
     public static boolean isThereAvaialbleStock(List<dish_order> dishes) {
         MongoCollection<Document> collection=SellerDB.getDb().getCollection("dishes");
         for(dish_order dish:dishes) {
@@ -36,7 +37,17 @@ public class Main {
         }
         return true;
     }
+    public static boolean CheckMinimumChargeConfirmation(double totalOrderAmount)
+    {
+        if(totalOrderAmount<Minimum_Charge)
+        {
+            return false;
+        }
+        else {
+            return true;
+        }
 
+    }
     public static void saveOrder(Order order,String status) {
         MongoCollection<Document> collection=SellerDB.getDb().getCollection("orders");
         Document doc=new Document()
@@ -77,15 +88,30 @@ public class Main {
             {
                 status="Completed";
                 Message="Instock";
+                sendConfirmation(order,status,Message);
+
+                if(CheckMinimumChargeConfirmation(order.getTotalPrice()))
+                {
+                    status="payment in progress";
+                    Message="Minimum charge is met";
+                    sendConfirmation(order,status,Message);
+                }
+                else
+                {
+                    status="rejected";
+                    Message="Minimum charge is not met";
+                    sendConfirmation(order,status,Message);
+                }
             }
             else
             {
                 status="rejected";
                 Message="out of stock";
+                sendConfirmation(order,status,Message);
+
 
             }
             saveOrder(order,status);
-            sendConfirmation(order,status,Message);
 
         };
         channel.basicConsume(queueName, true, deliverCallback, consumerTag -> {});
