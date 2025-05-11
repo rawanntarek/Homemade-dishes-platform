@@ -98,4 +98,16 @@ public class SellerEndpoint {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
     }
+
+    @Path("/soldDishes")
+    @GET
+    public Response getSoldDishes(@QueryParam("companyName") String companyName) {
+        if (companyName == null || companyName.isEmpty()) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity("{\"success\": false, \"message\": \"Company name is required.\"}")
+                    .build();
+        }
+        List<com.example.sellerservice.Order> soldOrders = sellerService.getSoldDishesWithCustomerInfo(companyName);
+        return Response.ok().entity(soldOrders).build();
+    }
 }

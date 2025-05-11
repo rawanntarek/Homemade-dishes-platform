@@ -7,68 +7,74 @@ body {
 }
 
 h1 {
-    background-color: 
-    #4faca3;
+    background-color: #4faca3;
     color: white;
-    padding: 20px 0;
+    padding: 28px 0 24px 0;
     margin: 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-p {
-    color: #000000;
-    font-size: 15px;
-    font-weight: bold;
-    background-color: #fff;
+    font-size: 2.2em;
+    letter-spacing: 1px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
 }
 
 form {
     display: inline-block;
-    background-color: #fff;
-    padding: 30px 40px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
-    text-align: center;
+    background: #fff;
+    padding: 38px 44px;
+    border-radius: 18px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+    margin-top: 48px;
+    text-align: left;
+    min-width: 320px;
+    max-width: 400px;
 }
 
 label {
-    font-weight: bold;
-    text-align: center;
+    font-weight: 600;
+    color: #007b83;
+    display: block;
+    margin-bottom: 8px;
+    margin-top: 18px;
 }
 
-textarea{
+input[type="text"],
+input[type="password"],
+textarea {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 14px;
+    padding: 12px 10px;
+    border: 1.5px solid #b2dfdb;
+    border-radius: 7px;
+    font-size: 1em;
+    margin-bottom: 16px;
+    background: #f8fdfd;
+    transition: border 0.2s;
 }
-input[type="text"]{
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 14px;
-}
-input[type="password"]{
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 14px;
+input[type="text"]:focus,
+input[type="password"]:focus,
+textarea:focus {
+    border: 1.5px solid #4faca3;
+    outline: none;
 }
 input[type="submit"] {
-    background-color:  
-    
-    #8bd7d0
-
-;
+    background: linear-gradient(90deg, #4faca3 60%, #8bd7d0 100%);
     color: white;
-    padding: 12px 20px;
+    padding: 14px 22px;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 1em;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    transition: background 0.2s, box-shadow 0.2s;
+}
+input[type="submit"]:hover {
+    background: linear-gradient(90deg, #3e8e7e 60%, #6ccfc2 100%);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.13);
+}
+p {
+    color: #333;
+    font-size: 1em;
+    font-weight: 500;
+    background: none;
+    margin-top: 18px;
 }
 

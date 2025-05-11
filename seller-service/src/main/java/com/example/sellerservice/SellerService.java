@@ -102,4 +102,35 @@ public class SellerService {
 
 
     }
+
+    public List<Order> getSoldDishesWithCustomerInfo(String companyName) {
+        MongoCollection<Document> collection = SellerDB.getDb().getCollection("orders");
+        List<Order> soldOrders = new ArrayList<>();
+        Document filter = new Document("status", "payment completed");
+        for (Document doc : collection.find(filter)) {
+            List<Document> dishesDocs = (List<Document>) doc.get("dishes");
+            boolean hasCompanyDish = false;
+            List<dish_order> companyDishes = new ArrayList<>();
+            for (Document dishDoc : dishesDocs) {
+                if (companyName.equals(dishDoc.getString("companyName"))) {
+                    hasCompanyDish = true;
+                    dish_order d = new dish_order();
+                    d.setDishName(dishDoc.getString("dishName"));
+                    d.setAmount(dishDoc.getInteger("amount"));
+                    d.setPrice(dishDoc.getDouble("price"));
+                    d.setCompanyName(dishDoc.getString("companyName"));
+                    companyDishes.add(d);
+                }
+            }
+            if (hasCompanyDish) {
+                Order order = new Order();
+                order.setCustomerName(doc.getString("customerName"));
+                order.setOrderId(doc.getString("orderId"));
+                order.setStatus(doc.getString("status"));
+                order.setDishes(companyDishes);
+                soldOrders.add(order);
+            }
+        }
+        return soldOrders;
+    }
 }
