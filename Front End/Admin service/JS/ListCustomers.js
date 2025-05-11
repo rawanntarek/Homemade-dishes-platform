@@ -17,8 +17,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 const card = document.createElement("div");
                 card.className = "card";
                 card.innerHTML = `
-                    <p><strong>Customer Name:</strong> ${customer.customerName}</p>
-                    <p><strong>Password:</strong> ${customer.customerPassword}</p>
+                    <p><strong>Customer Name:</strong> ${customer.username}</p>
+                    <p><strong>Password:</strong> ${customer.password}</p>
+                    <p><strong>balance: </strong> ${customer.balance}</p>
                 `;
                 container.appendChild(card);
             });

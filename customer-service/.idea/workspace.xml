@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6b5358bb-fe6e-4030-bf7b-10a061707fb6" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../Front End/Customer service/CSS/ListCurrentOrders.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front End/Customer service/CSS/ListCurrentOrders.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front End/Customer service/CSS/ListDishes.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front End/Customer service/CSS/ListDishes.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front End/Customer service/CSS/customerDashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front End/Customer service/CSS/customerDashboard.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front End/Customer service/CSS/customerLogin.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front End/Customer service/CSS/customerLogin.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front End/Customer service/CSS/customerRegister.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front End/Customer service/CSS/customerRegister.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/customerservice/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/customerservice/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
