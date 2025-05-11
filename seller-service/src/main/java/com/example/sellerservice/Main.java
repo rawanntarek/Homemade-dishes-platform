@@ -17,6 +17,7 @@ import java.util.concurrent.TimeoutException;
 public class Main {
     public static final String BASE_URI = "http://localhost:8082/seller-service/api/";
     private static final String EXCHANGE_NAME = "orders";
+    private static final String PAYMENT_EXCHANGE = "payment_responses";
     private static final double Minimum_Charge = 100.0;
     public static boolean isThereAvaialbleStock(List<dish_order> dishes) {
         MongoCollection<Document> collection=SellerDB.getDb().getCollection("dishes");
@@ -116,6 +117,36 @@ public class Main {
         };
         channel.basicConsume(queueName, true, deliverCallback, consumerTag -> {});
     }
+    public static void paymentResponseSubscriber() throws IOException, TimeoutException {
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.setHost("localhost");
+        Connection connection = factory.newConnection();
+        Channel channel = connection.createChannel();
+        
+        channel.exchangeDeclare(PAYMENT_EXCHANGE, BuiltinExchangeType.FANOUT);
+        String queueName = channel.queueDeclare().getQueue();
+        channel.queueBind(queueName, PAYMENT_EXCHANGE, "");
+        
+        System.out.println("Waiting for payment responses");
+        
+        DeliverCallback deliverCallback = (consumerTag, delivery) -> {
+            String message = new String(delivery.getBody());
+            System.out.println("Received payment response: " + message);
+            
+            ObjectMapper mapper = new ObjectMapper();
+            ConfirmationOrder paymentResponse = mapper.readValue(message, ConfirmationOrder.class);
+            
+            // Update order status in database
+            MongoCollection<Document> collection = SellerDB.getDb().getCollection("orders");
+            Document query = new Document("orderId", paymentResponse.getOrderId());
+            Document update = new Document("$set", new Document("status", paymentResponse.getStatus()));
+            collection.updateOne(query, update);
+            
+            System.out.println("Updated order status to: " + paymentResponse.getStatus());
+        };
+        
+        channel.basicConsume(queueName, true, deliverCallback, consumerTag -> {});
+    }
     // Start the server
     public static HttpServer startServer() {
         final ResourceConfig rc = new ResourceConfig().packages("com.example.sellerservice.endpoints");
@@ -150,9 +181,10 @@ public class Main {
     public static void main(String[] args) {
         final HttpServer server = startServer();
         System.out.printf("Server started at %s%nPress Ctrl+C to stop...%n", BASE_URI);
-        // Keep server running
+        
         try {
             orderSubscriber();
+            paymentResponseSubscriber();
             Thread.currentThread().join(); // keep server alive
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
