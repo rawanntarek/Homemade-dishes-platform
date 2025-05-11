@@ -46,7 +46,7 @@ public static void RecieveOrderConfirmation() throws IOException, TimeoutExcepti
             String message=new String(delivery.getBody());
             ObjectMapper objectMapper=new ObjectMapper();
             ConfirmationOrder confirmationOrder=objectMapper.readValue(message,ConfirmationOrder.class);
-            System.out.println(confirmationOrder.getOrderId()+": "+confirmationOrder.getStatus()+": "+confirmationOrder.getMessage()+": "+confirmationOrder.getCustomerName());
+            System.out.println(confirmationOrder.getOrderId()+": "+confirmationOrder.getStatus()+": "+confirmationOrder.getMessage()+": "+confirmationOrder.getCustomerName()+" : Order amount: "+confirmationOrder.getTotalOrderAmount());
             updateOrderInDatabase(confirmationOrder);
         };
         channel.basicConsume(queueName,true,deliverCallback,consumerTag->{});

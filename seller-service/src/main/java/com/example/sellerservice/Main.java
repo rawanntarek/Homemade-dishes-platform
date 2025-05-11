@@ -133,7 +133,7 @@ public class Main {
                 channel.queueBind(queueName,responseExchange,"");
                 channel.exchangeDeclare(responseExchange,BuiltinExchangeType.FANOUT);
                 ObjectMapper objectMapper=new ObjectMapper();
-                ConfirmationOrder confirmationOrder=new ConfirmationOrder(order.getCustomerName(), status, message, order.getOrderId());
+                ConfirmationOrder confirmationOrder=new ConfirmationOrder(order.getCustomerName(), status, message, order.getOrderId(), order.getTotalPrice());
                 String json=objectMapper.writeValueAsString(confirmationOrder);
                 channel.basicPublish(responseExchange, "", null, json.getBytes());
                 System.out.println("Confirmation Sent"+json);

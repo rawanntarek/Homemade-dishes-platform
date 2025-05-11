@@ -5,14 +5,22 @@ public class ConfirmationOrder {
     String CustomerName;
     String Status;
     String message;
+    double totalOrderAmount;
+    public double getTotalOrderAmount() {
+        return totalOrderAmount;
+    }
+    public void setTotalOrderAmount(double totalOrderAmount) {
+        this.totalOrderAmount = totalOrderAmount;
+    }
     ConfirmationOrder() {
 
     }
-    ConfirmationOrder(String CustomerName, String Status, String message, String orderId) {
+    ConfirmationOrder(String CustomerName, String Status, String message, String orderId,double totalOrderAmount) {
         this.CustomerName = CustomerName;
         this.Status = Status;
         this.message = message;
         this.orderId = orderId;
+        this.totalOrderAmount = totalOrderAmount;
     }
     public String getOrderId() {
         return orderId;
