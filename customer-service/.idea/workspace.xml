@@ -6,10 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="6b5358bb-fe6e-4030-bf7b-10a061707fb6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/customerservice/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/customerservice/CustomerService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/customerservice/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/customerservice/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/customerservice/endpoints/CustomerEndpoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/customerservice/endpoints/CustomerEndpoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../seller-service/src/main/java/com/example/sellerservice/SellerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../seller-service/src/main/java/com/example/sellerservice/SellerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../seller-service/src/main/java/com/example/sellerservice/endpoints/SellerEndpoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/../seller-service/src/main/java/com/example/sellerservice/endpoints/SellerEndpoint.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
