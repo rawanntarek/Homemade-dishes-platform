@@ -1,6 +1,8 @@
 package com.example.customerservice;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mongodb.client.MongoCollection;
 import com.rabbitmq.client.*;
+import org.bson.Document;
 
 import java.io.IOException;
 import java.util.List;
@@ -45,10 +47,19 @@ public static void RecieveOrderConfirmation() throws IOException, TimeoutExcepti
             ObjectMapper objectMapper=new ObjectMapper();
             ConfirmationOrder confirmationOrder=objectMapper.readValue(message,ConfirmationOrder.class);
             System.out.println(confirmationOrder.getOrderId()+": "+confirmationOrder.getStatus()+": "+confirmationOrder.getMessage()+": "+confirmationOrder.getCustomerName());
+            updateOrderInDatabase(confirmationOrder);
         };
         channel.basicConsume(queueName,true,deliverCallback,consumerTag->{});
     }
-
+    private static void updateOrderInDatabase(ConfirmationOrder confirmationOrder) {
+        String orderId = confirmationOrder.getOrderId();
+        String status = confirmationOrder.getStatus();
+        MongoCollection<Document> collection = CustomerDB.getDb().getCollection("orders");
+        Document query = new Document("orderId", orderId);
+        Document update = new Document("$set", new Document("status", status));
+        collection.updateOne(query, update);
+        System.out.println("Updated order status in database: " + status);
+    }
 
 }
 
