@@ -87,7 +87,6 @@ public class Main {
                     Message="there is no stock available";
                 }
                 ap.sendConfirmation(order.getOrderId(),order.getCustomerName(),Status,Message);
-                ap.sendMinimumChargeConfirmation(order.getOrderId(),order.getCustomerName(), order.getTotalPrice());
                 saveOrder(order,Status);
             }catch (Exception e) {
                 e.printStackTrace();
