@@ -73,7 +73,7 @@ public class CustomerEndpoint {
         {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
-        List<Order>orders=customerService.getPendingOrders(customerName);
+        List<Order>orders=customerService.getCurrentOrders(customerName);
         return Response.ok(orders).build();
 
     }

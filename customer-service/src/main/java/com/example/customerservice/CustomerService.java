@@ -12,6 +12,7 @@ import org.bson.Document;
 
 import javax.print.Doc;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class CustomerService {
@@ -71,33 +72,41 @@ public class CustomerService {
         collection.insertOne(doc);
 
     }
-    public List<Order> getPendingOrders(String customerName)
-    {
-        MongoCollection<Document> collection=CustomerDB.getDb().getCollection("orders");
-        FindIterable<Document>documents =collection.find(new Document("status", "pending").append("customerName", customerName));
-        List<Order> orders=new ArrayList<>();
-        for(Document doc:documents)
-        {
-            Order order=new Order();
+    public List<Order> getCurrentOrders(String customerName) {
+        MongoCollection<Document> collection = CustomerDB.getDb().getCollection("orders");
+
+        FindIterable<Document> documents = collection.find(
+                new Document("status", new Document("$in", Arrays.asList("pending", "completed", "payment in progress")))
+                        .append("customerName", customerName)
+        );
+
+        List<Order> orders = new ArrayList<>();
+
+        for (Document doc : documents) {
+            Order order = new Order();
             order.setCustomerName(doc.getString("customerName"));
             order.setOrderId(doc.getString("orderId"));
             order.setStatus(doc.getString("status"));
-            List<dish_order>dishes=new ArrayList<>();
 
-            for(Document dish:(List<Document>)doc.get("dishes"))
-            {
-                dish_order d=new dish_order();
-                d.setDishName(dish.getString("dishName"));
-                d.setAmount(dish.getInteger("amount"));
-                d.setPrice(dish.getDouble("price"));
-                d.setCompanyName(dish.getString("companyName"));
-                dishes.add(d);
+            List<dish_order> dishes = new ArrayList<>();
+
+            List<Document> dishDocuments = (List<Document>) doc.get("dishes");
+            if (dishDocuments != null) {
+                for (Document dish : dishDocuments) {
+                    dish_order d = new dish_order();
+                    d.setDishName(dish.getString("dishName"));
+                    d.setAmount(dish.getInteger("amount"));
+                    d.setPrice(dish.getDouble("price"));
+                    d.setCompanyName(dish.getString("companyName"));
+                    dishes.add(d);
+                }
             }
+
             order.setDishes(dishes);
             orders.add(order);
         }
+
         return orders;
-
-
     }
+
 }

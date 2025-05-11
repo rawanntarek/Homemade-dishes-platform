@@ -79,14 +79,12 @@ private static void processPayment(ConfirmationOrder confirmationOrder, Channel 
             double orderAmount = confirmationOrder.getTotalOrderAmount();
             
             if (currentBalance >= orderAmount) {
-                // Update customer balance
                 double newBalance = currentBalance - orderAmount;
                 customerCollection.updateOne(
                     new Document("username", confirmationOrder.getCustomerName()),
                     new Document("$set", new Document("balance", newBalance))
                 );
                 
-                // Send payment confirmation
                 ConfirmationOrder paymentConfirmation = new ConfirmationOrder(
                     confirmationOrder.getCustomerName(),
                     "payment completed",
@@ -99,10 +97,8 @@ private static void processPayment(ConfirmationOrder confirmationOrder, Channel 
                 String paymentMessage = new ObjectMapper().writeValueAsString(paymentConfirmation);
                 channel.basicPublish(PAYMENT_EXCHANGE, "", null, paymentMessage.getBytes());
                 
-                // Update order status
                 updateOrderInDatabase(paymentConfirmation);
             } else {
-                // Send payment rejection
                 ConfirmationOrder paymentRejection = new ConfirmationOrder(
                     confirmationOrder.getCustomerName(),
                     "payment rejected",
@@ -115,7 +111,6 @@ private static void processPayment(ConfirmationOrder confirmationOrder, Channel 
                 String paymentMessage = new ObjectMapper().writeValueAsString(paymentRejection);
                 channel.basicPublish(PAYMENT_EXCHANGE, "", null, paymentMessage.getBytes());
                 
-                // Update order status
                 updateOrderInDatabase(paymentRejection);
             }
         }

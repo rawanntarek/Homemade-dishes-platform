@@ -143,6 +143,33 @@ public class Main {
             collection.updateOne(query, update);
             
             System.out.println("Updated order status to: " + paymentResponse.getStatus());
+            Document orderDoc=collection.find(new Document("orderId", paymentResponse.getOrderId())).first();
+            if(orderDoc!=null)
+            {
+                List<Document> dishes=(List<Document>) orderDoc.get("dishes");
+                MongoCollection<Document> dishCollection = SellerDB.getDb().getCollection("dishes");
+                for(Document dishDoc:dishes)
+                {
+                    String dishName=dishDoc.getString("dishName");
+                    String companyName=dishDoc.getString("companyName");
+                    int amount=dishDoc.getInteger("amount");
+                    System.out.println("Dish Name: " + dishName+" Company Name: " + companyName+" Amount: " + amount);
+                    Document dishQuery = new Document("DishName", dishName).append("CompanyName", companyName);
+                    Document dish = dishCollection.find(dishQuery).first();
+                    if(dish!=null)
+                    {
+                        int availableDishAmount=dish.getInteger("DishAmount",0);
+                        int newdishAmount=availableDishAmount-amount;
+                        Document newDish = new Document("$set", new Document("DishAmount", newdishAmount));
+                        dishCollection.updateOne(new Document("DishName", dishName).append("CompanyName",companyName),newDish);
+                        System.out.println("Updated dish stock for " + dishName + " from company " + companyName + " with new stock: " + newdishAmount);
+                    }
+                    else
+                    {
+                        System.out.println("dish not found");
+                    }
+                }
+            }
         };
         
         channel.basicConsume(queueName, true, deliverCallback, consumerTag -> {});
