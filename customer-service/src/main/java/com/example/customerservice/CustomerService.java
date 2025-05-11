@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static java.util.List.of;
 
 public class CustomerService {
     private static final String seller_service_api="http://localhost:8082/seller-service/api/sellers/getAllDishes";
@@ -116,7 +115,7 @@ public class CustomerService {
 
         // Modify the query to search for orders with the statuses: "payment completed", "payment rejected", or "rejected"
         FindIterable<Document> documents = collection.find(
-                new Document("status", new Document("$in", of("payment completed", "payment rejected", "rejected")))
+                new Document("status", new Document("$in", Arrays.asList("payment completed", "payment rejected", "rejected")))
                         .append("customerName", customerName)
         );
 

@@ -2,14 +2,29 @@ package com.example.adminsrvc;
 
 import com.rabbitmq.client.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.annotation.PostConstruct;
+import jakarta.ejb.Singleton;
+import jakarta.ejb.Startup;
 
 import java.io.IOException;
+import java.util.UUID;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeoutException;
 
+@Singleton
+@Startup
 public class MessageSubscriber {
+    static {
+        System.out.println("🔥 MessageSubscriber class loaded");
+    }
+
 
     // Method to receive the failed payment messages
-    public static void receiveFailedPaymentMessage() throws IOException, TimeoutException {
+    @PostConstruct
+    public void receiveFailedPaymentMessage() throws IOException, TimeoutException {
+        System.out.println("Waiting for failed payment messages...");
+
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
         Connection connection = factory.newConnection();
@@ -22,12 +37,6 @@ public class MessageSubscriber {
         DeliverCallback deliverCallback = (consumerTag, delivery) -> {
             String message = new String(delivery.getBody(), "UTF-8");
             System.out.println("Received message: " + message);
-            ObjectMapper mapper = new ObjectMapper();
-            ConfirmationOrder failedPayment = mapper.readValue(message, ConfirmationOrder.class);
-            System.out.println("Failed Payment Order ID: " + failedPayment.getOrderId());
-            System.out.println("Customer Name: " + failedPayment.getCustomerName());
-            System.out.println("Status: " + failedPayment.getStatus());
-            System.out.println("Message: " + failedPayment.getMessage());
         };
 
         channel.basicConsume(queueName, true, deliverCallback, consumerTag -> {});

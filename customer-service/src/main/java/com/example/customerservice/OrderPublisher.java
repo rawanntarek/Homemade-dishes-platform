@@ -122,14 +122,16 @@ private static void processPayment(ConfirmationOrder confirmationOrder, Channel 
 public static void sendFailedPaymentMessage(ConfirmationOrder order) throws IOException, TimeoutException {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
+        String exchangeName = "paymentfailed";
 
         try (Connection connection = factory.newConnection(); Channel channel = connection.createChannel()) {
-            String exchangeName = "paymentfailed";
             channel.exchangeDeclare(exchangeName, BuiltinExchangeType.DIRECT);
             ObjectMapper objectMapper = new ObjectMapper();
+            String queueName = channel.queueDeclare().getQueue();
+            channel.queueBind(queueName, exchangeName, "");
             String message = objectMapper.writeValueAsString(order);
             channel.basicPublish(exchangeName, "", null, message.getBytes());
-            System.out.println("Failed payment message sent to exchange: " + exchangeName);
+            System.out.println("sent failed payment message: " + message);
         }
     }
 
