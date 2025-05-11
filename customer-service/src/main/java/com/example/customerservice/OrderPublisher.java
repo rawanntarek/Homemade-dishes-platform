@@ -24,7 +24,6 @@ public static void placeOrder(Order order) {
         String orderMessage=mapper.writeValueAsString(order);
         channel.basicPublish(EXCHANGE_NAME,"",null,orderMessage.getBytes());
         System.out.println("sent order with id: "+order.getOrderId());
-        AcknowledgmentSubscriber.RecieveConfirmation();
             }
     catch(Exception e){
         e.printStackTrace();

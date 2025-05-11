@@ -17,7 +17,6 @@ import java.util.concurrent.TimeoutException;
 public class Main {
     public static final String BASE_URI = "http://localhost:8082/seller-service/api/";
     private static final String EXCHANGE_NAME = "orders";
-    static AcknowledgmentPublisher ap=new AcknowledgmentPublisher();
     public static boolean isThereAvaialbleStock(List<dish_order> dishes) {
         MongoCollection<Document> collection=SellerDB.getDb().getCollection("dishes");
         for(dish_order dish:dishes) {
@@ -70,27 +69,6 @@ public class Main {
         DeliverCallback deliverCallback = (consumerTag, delivery) -> {
             String message = new String(delivery.getBody());
             System.out.println("Received '" + message + "'");
-            try{
-                ObjectMapper mapper = new ObjectMapper();
-                Order order = mapper.readValue(message, Order.class);
-                boolean checkStock=isThereAvaialbleStock(order.getDishes());
-                String Status="";
-                String Message="";
-                if(checkStock)
-                {
-                    Status="completed";
-                    Message="there is a stock available";
-                }
-                else
-                {
-                    Status="rejected";
-                    Message="there is no stock available";
-                }
-                ap.sendConfirmation(order.getOrderId(),order.getCustomerName(),Status,Message);
-                saveOrder(order,Status);
-            }catch (Exception e) {
-                e.printStackTrace();
-            }
         };
         channel.basicConsume(queueName, true, deliverCallback, consumerTag -> {});
     }
