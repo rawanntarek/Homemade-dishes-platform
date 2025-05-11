@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static java.util.List.of;
+
 public class CustomerService {
     private static final String seller_service_api="http://localhost:8082/seller-service/api/sellers/getAllDishes";
     public boolean RegisterCustomer(Customer customer) {
@@ -101,7 +103,46 @@ public class CustomerService {
                     dishes.add(d);
                 }
             }
+            order.setDishes(dishes);
+            orders.add(order);
+        }
+        return orders;
 
+
+    }
+    public List<Order> getPastDishesOrders(String customerName) {
+        // Get the collection of orders from the CustomerDB
+        MongoCollection<Document> collection = CustomerDB.getDb().getCollection("orders");
+
+        // Modify the query to search for orders with the statuses: "payment completed", "payment rejected", or "rejected"
+        FindIterable<Document> documents = collection.find(
+                new Document("status", new Document("$in", of("payment completed", "payment rejected", "rejected")))
+                        .append("customerName", customerName)
+        );
+
+        List<Order> orders = new ArrayList<>();
+
+        // Loop through each document and map it to the Order object
+        for (Document doc : documents) {
+            Order order = new Order();
+            order.setCustomerName(doc.getString("customerName"));
+            order.setOrderId(doc.getString("orderId"));
+            order.setStatus(doc.getString("status"));
+
+            // List to hold the dishes in the order
+            List<dish_order> dishes = new ArrayList<>();
+
+            // Loop through the dishes in the order and map to dish_order objects
+            for (Document dish : (List<Document>) doc.get("dishes")) {
+                dish_order d = new dish_order();
+                d.setDishName(dish.getString("dishName"));
+                d.setAmount(dish.getInteger("amount"));
+                d.setPrice(dish.getDouble("price"));
+                d.setCompanyName(dish.getString("companyName"));
+                dishes.add(d);
+            }
+
+            // Set the list of dishes to the order
             order.setDishes(dishes);
             orders.add(order);
         }
@@ -109,4 +150,5 @@ public class CustomerService {
         return orders;
     }
 
-}
+    }
+

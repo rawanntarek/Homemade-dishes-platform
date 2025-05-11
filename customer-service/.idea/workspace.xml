@@ -5,12 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6b5358bb-fe6e-4030-bf7b-10a061707fb6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../.idea/libraries/amqp_client_5_16_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/customerservice/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/customerservice/CustomerService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/customerservice/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/customerservice/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/customerservice/OrderPublisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/customerservice/OrderPublisher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/customerservice/endpoints/CustomerEndpoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/customerservice/endpoints/CustomerEndpoint.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
