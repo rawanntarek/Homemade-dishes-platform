@@ -77,4 +77,14 @@ public class CustomerEndpoint {
         return Response.ok(orders).build();
 
     }
+    @Path("/getPastOrders")
+    @GET
+    public Response getPastOrders(@QueryParam("customerName")String customerName) {
+        if(customerName==null)
+        {
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        }
+        List<Order>orders=customerService.getPastDishesOrders(customerName);
+        return Response.ok(orders).build();
+    }
 }
