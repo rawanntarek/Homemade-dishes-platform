@@ -59,3 +59,16 @@ button {
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
 }
+.notification-icon {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+}
+
+.notification-icon:hover {
+    color: #e87052;
+}
+

@@ -15,7 +15,7 @@ public class ConfirmationOrder {
     ConfirmationOrder() {
 
     }
-    ConfirmationOrder(String CustomerName, String Status, String message, String orderId, double totalOrderAmount) {
+    public ConfirmationOrder(String CustomerName, String Status, String message, String orderId, double totalOrderAmount) {
         this.CustomerName = CustomerName;
         this.Status = Status;
         this.message = message;

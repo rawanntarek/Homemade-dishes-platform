@@ -10,12 +10,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="80095429-e4a8-4abd-8fb5-e2f73a2b4526" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Front End/Admin service/CSS/ListNotifications.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Front End/Admin service/Html/ListNotifications.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Front End/Admin service/JS/ListNotifications.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front End/Admin service/CSS/AdminDashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front End/Admin service/CSS/AdminDashboard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front End/Admin service/CSS/ListCustomers.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front End/Admin service/CSS/ListCustomers.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front End/Admin service/Html/AdminDashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front End/Admin service/Html/AdminDashboard.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/adminsrvc/AdminEndpoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/adminsrvc/AdminEndpoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/adminsrvc/ConfirmationOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/adminsrvc/ConfirmationOrder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/adminsrvc/EJB/AdminBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/adminsrvc/EJB/AdminBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/adminsrvc/Entities/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/adminsrvc/entities/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/adminsrvc/Entities/Seller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/adminsrvc/entities/Seller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/adminsrvc/MessageSubscriber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/adminsrvc/MessageSubscriber.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../customer-service/src/main/java/com/example/customerservice/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../customer-service/src/main/java/com/example/customerservice/CustomerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../customer-service/src/main/java/com/example/customerservice/OrderPublisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/../customer-service/src/main/java/com/example/customerservice/OrderPublisher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../customer-service/src/main/java/com/example/customerservice/endpoints/CustomerEndpoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/../customer-service/src/main/java/com/example/customerservice/endpoints/CustomerEndpoint.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,45 +89,6 @@
       <recent name="com.example.adminsrvc" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration name="JBoss Admin Service" type="JBossConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="JBoss Admin Service" ALTERNATIVE_JRE_ENABLED="false">
-      <deployment>
-        <artifact name="admin-srvc:war">
-          <settings />
-        </artifact>
-      </deployment>
-      <server-settings>
-        <option name="BINDING_SET_NAME" value="" />
-        <option name="SERVER" value="" />
-        <option name="DOMAIN" value="false" />
-        <option name="SERVER_GROUP" value="" />
-        <option name="USERNAME" value="" />
-        <option name="CREDENTIAL_ALIAS" />
-      </server-settings>
-      <predefined_log_file enabled="true" id="JBoss" />
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <method v="2">
-        <option name="Make" enabled="true" />
-        <option name="BuildArtifacts" enabled="true">
-          <artifact name="admin-srvc:war exploded" />
-        </option>
-      </method>
-    </configuration>
-  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -136,7 +106,7 @@
       <option name="presentableId" value="Default" />
       <updated>1746580142427</updated>
       <workItem from="1746580143397" duration="1482000" />
-      <workItem from="1746982548917" duration="2493000" />
+      <workItem from="1746982548917" duration="6724000" />
     </task>
     <servers />
   </component>

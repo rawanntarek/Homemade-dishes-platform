@@ -2,9 +2,14 @@
 <head>
     <title>Admin Dashboard</title>
     <link rel="stylesheet" type="text/css" href="../CSS/AdminDashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <body>
         <h1>Welcome Back Admin!</h1>
-       
+
+        <div class="notification-icon" onclick="location.href='ListNotifications.html'">
+            <i class="fas fa-bell"></i>
+        </div>
         <div class="container">
             <div class="card">
                 <h2>Create Sellers Accounts</h2>
@@ -22,5 +27,6 @@
                 <p>Listing of customers accounts</p>
                 <button onclick="location.href='ListCustomers.html'">List Customers</button>
             </div>
+        </div>
     </body>
 </html>

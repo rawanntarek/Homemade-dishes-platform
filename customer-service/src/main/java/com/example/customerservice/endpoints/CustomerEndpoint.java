@@ -87,4 +87,13 @@ public class CustomerEndpoint {
         List<Order>orders=customerService.getPastDishesOrders(customerName);
         return Response.ok(orders).build();
     }
+    @Path("/getCustomers")
+    @GET
+    public Response getCustomers() {
+        if(customerService.getCustomers().isEmpty())
+        {
+            return Response.status(Response.Status.NO_CONTENT).build();
+        }
+        return Response.ok(customerService.getCustomers()).build();
+    }
 }

@@ -1,13 +1,12 @@
 package com.example.adminsrvc;
 
 import com.example.adminsrvc.EJB.AdminBean;
-import com.example.adminsrvc.entities.Customer;
-import com.example.adminsrvc.entities.Seller;
 import jakarta.ejb.EJB;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
+import java.io.IOException;
 import java.util.List;
 
 @Path("/admin")
@@ -34,8 +33,8 @@ public class AdminEndpoint {
 
     @GET
     @Path("/getCustomers")
-    public Response getCustomers() {
-        if(adminBean.ListCustomerAccounts().size() == 0) {
+    public Response getCustomers() throws IOException {
+        if(adminBean.ListCustomerAccounts().isEmpty()) {
             return Response.noContent().build();
         }
         return Response.ok(adminBean.ListCustomerAccounts()).build();
@@ -45,5 +44,13 @@ public class AdminEndpoint {
     @Path("/test")
     public String testEndpoint() {
         return "Test endpoint is working!";
+    }
+    @GET
+    @Path("/notifications")
+    public Response getNotifications() {
+        if(adminBean.getNotifications().size() == 0) {
+            return Response.noContent().build();
+        }
+        return Response.ok(adminBean.getNotifications()).build();
     }
 }

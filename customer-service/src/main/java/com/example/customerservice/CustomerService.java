@@ -148,6 +148,19 @@ public class CustomerService {
 
         return orders;
     }
+    public List<Customer> getCustomers() {
+        MongoCollection<Document> collection = CustomerDB.getDb().getCollection("customers");
+        List<Customer> customers = new ArrayList<>();
+        for (Document doc : collection.find()) {
+            Customer customer = new Customer();
+            customer.setUsername(doc.getString("username"));
+            customer.setPassword(doc.getString("password"));
+            customer.setBalance(doc.getDouble("balance"));
+            customers.add(customer);
+        }
+        return customers;
+
+    }
 
     }
 
