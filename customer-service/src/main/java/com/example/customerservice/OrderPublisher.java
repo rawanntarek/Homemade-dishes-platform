@@ -106,6 +106,7 @@ private static void processPayment(ConfirmationOrder confirmationOrder, Channel 
                     confirmationOrder.getOrderId(),
                     confirmationOrder.getTotalOrderAmount()
                 );
+                sendFailedPaymentMessage(paymentRejection);
                 
                 channel.exchangeDeclare(PAYMENT_EXCHANGE, BuiltinExchangeType.FANOUT);
                 String paymentMessage = new ObjectMapper().writeValueAsString(paymentRejection);
@@ -118,6 +119,19 @@ private static void processPayment(ConfirmationOrder confirmationOrder, Channel 
         e.printStackTrace();
     }
 }
+public static void sendFailedPaymentMessage(ConfirmationOrder order) throws IOException, TimeoutException {
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.setHost("localhost");
+
+        try (Connection connection = factory.newConnection(); Channel channel = connection.createChannel()) {
+            String exchangeName = "paymentfailed";
+            channel.exchangeDeclare(exchangeName, BuiltinExchangeType.DIRECT);
+            ObjectMapper objectMapper = new ObjectMapper();
+            String message = objectMapper.writeValueAsString(order);
+            channel.basicPublish(exchangeName, "", null, message.getBytes());
+            System.out.println("Failed payment message sent to exchange: " + exchangeName);
+        }
+    }
 
 private static void updateOrderInDatabase(ConfirmationOrder confirmationOrder) {
     String orderId = confirmationOrder.getOrderId();
