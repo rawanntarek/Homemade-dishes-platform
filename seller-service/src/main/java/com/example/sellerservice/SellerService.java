@@ -144,4 +144,14 @@ public class SellerService {
 
         return soldOrders;
     }
+    public static List<String> getLogs()
+    {
+        MongoCollection<Document> collection = SellerDB.getDb().getCollection("logs");
+        List<String> logs = new ArrayList<>();
+        for (Document doc : collection.find()) {
+            String Message = doc.getString("message");
+            logs.add(Message);
+        }
+        return logs;
+    }
 }

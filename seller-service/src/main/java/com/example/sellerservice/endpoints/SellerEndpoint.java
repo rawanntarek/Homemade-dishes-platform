@@ -110,4 +110,12 @@ public class SellerEndpoint {
         List<com.example.sellerservice.Order> soldOrders = sellerService.getSoldDishesWithCustomerInfo(companyName);
         return Response.ok().entity(soldOrders).build();
     }
+    @GET
+    @Path("/logs")
+    public Response getLogs() {
+        if(SellerService.getLogs().size() == 0) {
+            return Response.noContent().build();
+        }
+        return Response.ok(SellerService.getLogs()).build();
+    }
 }

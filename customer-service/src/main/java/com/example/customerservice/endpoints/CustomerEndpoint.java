@@ -96,4 +96,12 @@ public class CustomerEndpoint {
         }
         return Response.ok(customerService.getCustomers()).build();
     }
+    @GET
+    @Path("/logs")
+    public Response getLogs() {
+        if(customerService.getLogs().size() == 0) {
+            return Response.noContent().build();
+        }
+        return Response.ok(customerService.getLogs()).build();
+    }
 }

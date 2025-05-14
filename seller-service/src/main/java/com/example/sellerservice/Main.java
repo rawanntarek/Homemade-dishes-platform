@@ -90,7 +90,7 @@ public class Main {
                 status="Completed";
                 Message="Instock";
                 sendConfirmation(order,status,Message);
-                LogPublisher.log("Seller Service","Info","Order with order Id: " + order.getOrderId() + " has dishes in stock: " + order.getDishes()+" new status: " + status);
+                LogPublisher.log("Seller Service","Info","Order with order Id: " + order.getOrderId() + " has dishes in stock new status: " + status);
 
                 if(CheckMinimumChargeConfirmation(order.getTotalPrice()))
                 {
@@ -116,7 +116,7 @@ public class Main {
                 status="rejected";
                 Message="out of stock";
                 sendConfirmation(order,status,Message);
-                LogPublisher.log("Seller Service","Error","Order with order Id: " + order.getOrderId() + " has dishes out of stock: " + order.getDishes()+" new status: " + status);
+                LogPublisher.log("Seller Service","Error","Order with order Id: " + order.getOrderId() + " has dishes out of stock new status: " + status);
 
 
 

@@ -9,10 +9,10 @@ import com.rabbitmq.client.ConnectionFactory;
 import org.bson.Document;
 
 public class LogPublisher {
-    private static final String log_exchange="log";
+    private static final String log_exchange="logs";
     public static void log(String serviceName,String severity,String message)
     {
-        String routing_key=serviceName+"_"+severity;
+        String routing_key = serviceName.replaceAll("\\s+", "") + "_" + severity;
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
         try(Connection connection= factory.newConnection();
@@ -25,7 +25,7 @@ public class LogPublisher {
             channel.basicPublish(log_exchange,routing_key,null,json.getBytes());
 
             SellerDB sellerDB=new SellerDB();
-            MongoCollection<Document> collection=SellerDB.getDb().getCollection("logs");
+            MongoCollection<Document> collection=sellerDB.getDb().getCollection("logs");
             Document doc=new Document("serviceName",serviceName)
                     .append("severity",severity)
                     .append("message",message);

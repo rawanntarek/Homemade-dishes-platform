@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="admin-srvc:war exploded" />
+      <artifact name="admin-srvc:war" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
@@ -10,21 +10,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="80095429-e4a8-4abd-8fb5-e2f73a2b4526" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../Front End/Admin service/CSS/ListNotifications.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front End/Admin service/Html/ListNotifications.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front End/Admin service/JS/ListNotifications.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front End/Admin service/CSS/AdminDashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front End/Admin service/CSS/AdminDashboard.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front End/Admin service/CSS/ListCustomers.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front End/Admin service/CSS/ListCustomers.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front End/Admin service/Html/AdminDashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front End/Admin service/Html/AdminDashboard.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Front End/Logs/CSS/AdminServiceLogs.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Front End/Logs/CSS/CustomerServiceLogs.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Front End/Logs/CSS/LogsDashboard.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Front End/Logs/CSS/SellerServiceLogs.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Front End/Logs/Html/LogsDashboard.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Front End/Logs/Html/getAdminServiceLogs.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Front End/Logs/Html/getCustomerServiceLogs.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Front End/Logs/Html/getSellerServiceLogs.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Front End/Logs/JS/AdminServiceLogs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Front End/Logs/JS/CustomerServiceLogs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Front End/Logs/JS/SellerServiceLogs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Front End/Main/CSS/main.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Front End/Main/Html/main.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Front End/Main/Html/users.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/adminsrvc/AdminEndpoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/adminsrvc/AdminEndpoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/adminsrvc/ConfirmationOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/adminsrvc/ConfirmationOrder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/adminsrvc/EJB/AdminBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/adminsrvc/EJB/AdminBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/adminsrvc/Entities/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/adminsrvc/entities/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/adminsrvc/Entities/Seller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/adminsrvc/entities/Seller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/adminsrvc/MessageSubscriber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/adminsrvc/MessageSubscriber.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/adminsrvc/LogConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/adminsrvc/LogConsumer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../customer-service/src/main/java/com/example/customerservice/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../customer-service/src/main/java/com/example/customerservice/CustomerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../customer-service/src/main/java/com/example/customerservice/LogPublisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/../customer-service/src/main/java/com/example/customerservice/LogPublisher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../customer-service/src/main/java/com/example/customerservice/endpoints/CustomerEndpoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/../customer-service/src/main/java/com/example/customerservice/endpoints/CustomerEndpoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../seller-service/src/main/java/com/example/sellerservice/LogPublisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/../seller-service/src/main/java/com/example/sellerservice/LogPublisher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../seller-service/src/main/java/com/example/sellerservice/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../seller-service/src/main/java/com/example/sellerservice/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../seller-service/src/main/java/com/example/sellerservice/SellerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../seller-service/src/main/java/com/example/sellerservice/SellerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../seller-service/src/main/java/com/example/sellerservice/endpoints/SellerEndpoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/../seller-service/src/main/java/com/example/sellerservice/endpoints/SellerEndpoint.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,22 +75,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "JBoss/WildFly Server.JBoss Admin Service.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "G:/year 4 semester 2/Distributed Systems/Homemade-dishes-platform/admin-srvc",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JBoss/WildFly Server.JBoss Admin Service.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;G:/year 4 semester 2/Distributed Systems/Homemade-dishes-platform/admin-srvc&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="G:\year 4 semester 2\Distributed Systems\Homemade-dishes-platform\admin-srvc\src\main\java\com\example\adminsrvc" />
@@ -88,6 +98,79 @@
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.example.adminsrvc" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="JBoss Admin Service" type="JBossConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="JBoss Admin Service" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <artifact name="admin-srvc:war">
+          <settings />
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BINDING_SET_NAME" value="" />
+        <option name="SERVER" />
+        <option name="DOMAIN" value="false" />
+        <option name="SERVER_GROUP" value="main-server-group" />
+        <option name="USERNAME" value="" />
+        <option name="CREDENTIAL_ALIAS" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="JBoss" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="55810" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="admin-srvc:war" />
+        </option>
+      </method>
+    </configuration>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -107,6 +190,7 @@
       <updated>1746580142427</updated>
       <workItem from="1746580143397" duration="1482000" />
       <workItem from="1746982548917" duration="6724000" />
+      <workItem from="1747226619740" duration="4650000" />
     </task>
     <servers />
   </component>

@@ -9,17 +9,17 @@ import com.rabbitmq.client.ConnectionFactory;
 import org.bson.Document;
 
 public class LogPublisher {
-    private static final String log_exchange="log";
+    private static final String log_exchange="logs";
     public static void log(String serviceName,String severity,String message)
     {
-        String routing_key=serviceName+"_"+severity;
+        String routing_key = serviceName + "_" + severity;
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
         try(Connection connection= factory.newConnection();
             Channel channel= connection.createChannel())
         {
             channel.exchangeDeclare(log_exchange, BuiltinExchangeType.TOPIC);
-            LogMsg logMsg=new LogMsg(serviceName,severity,message);
+            LogMsg logMsg=new LogMsg(severity,serviceName,message);
             ObjectMapper mapper = new ObjectMapper();
             String json = mapper.writeValueAsString(logMsg);
             channel.basicPublish(log_exchange,routing_key,null,json.getBytes());

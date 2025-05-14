@@ -130,4 +130,14 @@ public class AdminBean {
         }
         return notifications;
     }
+    public List<String> getLogs()
+    {
+        MongoCollection<Document> collection = dbConnection.getDb().getCollection("logs");
+        List<String> logs = new ArrayList<>();
+        for (Document doc : collection.find()) {
+            String Message = doc.getString("message");
+            logs.add(Message);
+        }
+        return logs;
+    }
 }

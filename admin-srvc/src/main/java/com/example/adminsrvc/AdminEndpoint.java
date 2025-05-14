@@ -53,4 +53,13 @@ public class AdminEndpoint {
         }
         return Response.ok(adminBean.getNotifications()).build();
     }
+    @GET
+    @Path("/logs")
+    public Response getLogs() {
+        if(adminBean.getLogs().size() == 0) {
+            return Response.noContent().build();
+        }
+        return Response.ok(adminBean.getLogs()).build();
+    }
+
 }

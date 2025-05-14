@@ -24,7 +24,10 @@ public class CustomerService {
         Document usernameExists=collection.find(new Document("username", customer.getUsername())).first();
         if(usernameExists!=null)
         {
+            logPublisher.log("Customer Service","Error","Customer Registered Failed: "+customer.getUsername());
+
             return false;
+
         }
         Document doc = new Document("username", customer.getUsername())
                 .append("password", customer.getPassword())
@@ -39,10 +42,13 @@ public class CustomerService {
         MongoCollection<Document> collection=CustomerDB.getDb().getCollection("customers");
         Document doc = collection.find(new Document("username", customer.getUsername()).append("password", customer.getPassword())).first();
         if(doc==null) {
+            logPublisher.log("Customer Service","Error","Customer Login Failed: "+customer.getUsername());
+
             return false;
         }
         else
         {
+
             logPublisher.log("Customer Service","Info","Customer Logged in Successfully: "+customer.getUsername());
 
             return true;
@@ -62,6 +68,16 @@ public class CustomerService {
             return new ArrayList<>();
         }
 
+    }
+    public List<String> getLogs()
+    {
+        MongoCollection<Document> collection = CustomerDB.getDb().getCollection("logs");
+        List<String> logs = new ArrayList<>();
+        for (Document doc : collection.find()) {
+            String Message = doc.getString("message");
+            logs.add(Message);
+        }
+        return logs;
     }
     public void storeOrder(Order order) {
         MongoCollection<Document> collection=CustomerDB.getDb().getCollection("orders");
