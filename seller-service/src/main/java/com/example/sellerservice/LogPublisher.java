@@ -12,7 +12,7 @@ public class LogPublisher {
     private static final String log_exchange="logs";
     public static void log(String serviceName,String severity,String message)
     {
-        String routing_key = serviceName.replaceAll("\\s+", "") + "_" + severity;
+        String routing_key = serviceName+"_"+ severity;
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
         try(Connection connection= factory.newConnection();

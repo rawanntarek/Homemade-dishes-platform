@@ -25,11 +25,16 @@ public class SellerService {
         Document doc = collection.find(new Document("companyName", companyName)).first();
 
         if (doc == null) {
+            LogPublisher.log("Seller Service","Error","Company with name " + companyName + " Login failed.");
+
             return "Company with name " + companyName + " does not exist.";
+
         }
 
         String companyPassword = doc.getString("companyPassword");
         if (!companyPassword.equals(password)) {
+            LogPublisher.log("Seller Service","Error","Company with name " + companyName + " Login failed.");
+
             return "Company with name " + companyName + " has the wrong password.";
         }
         LogPublisher.log("Seller Service","Info","Company with name " + companyName + " Login successful.");

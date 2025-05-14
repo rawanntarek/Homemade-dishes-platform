@@ -10,31 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="80095429-e4a8-4abd-8fb5-e2f73a2b4526" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../Front End/Logs/CSS/AdminServiceLogs.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front End/Logs/CSS/CustomerServiceLogs.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front End/Logs/CSS/LogsDashboard.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front End/Logs/CSS/SellerServiceLogs.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front End/Logs/Html/LogsDashboard.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front End/Logs/Html/getAdminServiceLogs.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front End/Logs/Html/getCustomerServiceLogs.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front End/Logs/Html/getSellerServiceLogs.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front End/Logs/JS/AdminServiceLogs.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front End/Logs/JS/CustomerServiceLogs.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front End/Logs/JS/SellerServiceLogs.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front End/Main/CSS/main.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front End/Main/Html/main.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Front End/Main/Html/users.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front End/Main/Html/users.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front End/Main/Html/users.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/adminsrvc/AdminEndpoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/adminsrvc/AdminEndpoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/adminsrvc/EJB/AdminBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/adminsrvc/EJB/AdminBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/adminsrvc/LogConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/adminsrvc/LogConsumer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../customer-service/src/main/java/com/example/customerservice/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../customer-service/src/main/java/com/example/customerservice/CustomerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../customer-service/src/main/java/com/example/customerservice/LogPublisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/../customer-service/src/main/java/com/example/customerservice/LogPublisher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../customer-service/src/main/java/com/example/customerservice/endpoints/CustomerEndpoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/../customer-service/src/main/java/com/example/customerservice/endpoints/CustomerEndpoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../seller-service/src/main/java/com/example/sellerservice/LogPublisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/../seller-service/src/main/java/com/example/sellerservice/LogPublisher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../seller-service/src/main/java/com/example/sellerservice/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../seller-service/src/main/java/com/example/sellerservice/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../seller-service/src/main/java/com/example/sellerservice/SellerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../seller-service/src/main/java/com/example/sellerservice/SellerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../seller-service/src/main/java/com/example/sellerservice/endpoints/SellerEndpoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/../seller-service/src/main/java/com/example/sellerservice/endpoints/SellerEndpoint.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -191,6 +169,7 @@
       <workItem from="1746580143397" duration="1482000" />
       <workItem from="1746982548917" duration="6724000" />
       <workItem from="1747226619740" duration="4650000" />
+      <workItem from="1747234111261" duration="692000" />
     </task>
     <servers />
   </component>
