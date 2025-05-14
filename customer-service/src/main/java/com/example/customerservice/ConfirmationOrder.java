@@ -1,8 +1,8 @@
 package com.example.customerservice;
 
 public class ConfirmationOrder {
-    String orderId;
-    String CustomerName;
+    static String orderId;
+    static String CustomerName;
     String Status;
     String message;
     double totalOrderAmount;
@@ -22,13 +22,13 @@ public class ConfirmationOrder {
         this.orderId = orderId;
         this.totalOrderAmount = totalOrderAmount;
     }
-    public String getOrderId() {
+    public static String getOrderId() {
         return orderId;
     }
     public void setOrderId(String orderId) {
         this.orderId = orderId;
     }
-    public String getCustomerName() {
+    public static String getCustomerName() {
         return CustomerName;
     }
     public void setCustomerName(String CustomerName) {

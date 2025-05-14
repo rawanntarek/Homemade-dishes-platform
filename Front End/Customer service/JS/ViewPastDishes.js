@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function fetchPastOrders(customerName) {
-    const url = `http://localhost:8081/customer-service/api/customers/getPastOrders?customerName=${customerName}`;
+    const url = `http://localhost:8083/customer-service/api/customers/getPastOrders?customerName=${customerName}`;
 
     fetch(url)
         .then(response => {

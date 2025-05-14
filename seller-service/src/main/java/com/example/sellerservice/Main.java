@@ -90,18 +90,25 @@ public class Main {
                 status="Completed";
                 Message="Instock";
                 sendConfirmation(order,status,Message);
+                LogPublisher.log("Seller Service","Info","Order with order Id: " + order.getOrderId() + " has dishes in stock: " + order.getDishes()+" new status: " + status);
 
                 if(CheckMinimumChargeConfirmation(order.getTotalPrice()))
                 {
                     status="payment in progress";
                     Message="Minimum charge is met";
                     sendConfirmation(order,status,Message);
+                    LogPublisher.log("Seller Service","Info","Order with order Id: " + order.getOrderId() + " met minumum charge new status: " + status);
+
+
                 }
                 else
                 {
                     status="rejected";
                     Message="Minimum charge is not met";
                     sendConfirmation(order,status,Message);
+                    LogPublisher.log("Seller Service","Error","Order with order Id: " + order.getOrderId() + " didn't meet minumum charge new status: " + status);
+
+
                 }
             }
             else
@@ -109,6 +116,8 @@ public class Main {
                 status="rejected";
                 Message="out of stock";
                 sendConfirmation(order,status,Message);
+                LogPublisher.log("Seller Service","Error","Order with order Id: " + order.getOrderId() + " has dishes out of stock: " + order.getDishes()+" new status: " + status);
+
 
 
             }
@@ -163,6 +172,7 @@ public class Main {
                         Document newDish = new Document("$set", new Document("DishAmount", newdishAmount));
                         dishCollection.updateOne(new Document("DishName", dishName).append("CompanyName",companyName),newDish);
                         System.out.println("Updated dish stock for " + dishName + " from company " + companyName + " with new stock: " + newdishAmount);
+                        LogPublisher.log("Seller Service","Info","Dish with name " + dishName + " and company name " + companyName + " has new stock: " + newdishAmount);
                     }
                     else
                     {

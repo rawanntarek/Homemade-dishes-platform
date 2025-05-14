@@ -18,6 +18,7 @@ import java.util.List;
 
 public class CustomerService {
     private static final String seller_service_api="http://localhost:8082/seller-service/api/sellers/getAllDishes";
+    LogPublisher logPublisher=new LogPublisher();
     public boolean RegisterCustomer(Customer customer) {
         MongoCollection<Document> collection=CustomerDB.getDb().getCollection("customers");
         Document usernameExists=collection.find(new Document("username", customer.getUsername())).first();
@@ -29,6 +30,7 @@ public class CustomerService {
                 .append("password", customer.getPassword())
                 .append("balance", 100);
         collection.insertOne(doc);
+        logPublisher.log("Customer Service","Info","Customer Registered Successfully: "+customer.getUsername());
         return true;
 
     }
@@ -41,8 +43,11 @@ public class CustomerService {
         }
         else
         {
+            logPublisher.log("Customer Service","Info","Customer Logged in Successfully: "+customer.getUsername());
+
             return true;
         }
+
     }
     public List<Dish> getDishes() {
         Client client = ClientBuilder.newClient();
@@ -105,15 +110,14 @@ public class CustomerService {
             order.setDishes(dishes);
             orders.add(order);
         }
+        LogPublisher.log("Customer Service","Info","Customer Current Orders Retrieved: "+customerName);
         return orders;
 
 
     }
     public List<Order> getPastDishesOrders(String customerName) {
-        // Get the collection of orders from the CustomerDB
         MongoCollection<Document> collection = CustomerDB.getDb().getCollection("orders");
 
-        // Modify the query to search for orders with the statuses: "payment completed", "payment rejected", or "rejected"
         FindIterable<Document> documents = collection.find(
                 new Document("status", new Document("$in", Arrays.asList("payment completed", "payment rejected", "rejected")))
                         .append("customerName", customerName)
@@ -121,17 +125,14 @@ public class CustomerService {
 
         List<Order> orders = new ArrayList<>();
 
-        // Loop through each document and map it to the Order object
         for (Document doc : documents) {
             Order order = new Order();
             order.setCustomerName(doc.getString("customerName"));
             order.setOrderId(doc.getString("orderId"));
             order.setStatus(doc.getString("status"));
 
-            // List to hold the dishes in the order
             List<dish_order> dishes = new ArrayList<>();
 
-            // Loop through the dishes in the order and map to dish_order objects
             for (Document dish : (List<Document>) doc.get("dishes")) {
                 dish_order d = new dish_order();
                 d.setDishName(dish.getString("dishName"));
@@ -141,10 +142,11 @@ public class CustomerService {
                 dishes.add(d);
             }
 
-            // Set the list of dishes to the order
             order.setDishes(dishes);
             orders.add(order);
         }
+        LogPublisher.log("Customer Service","Info","Customer Past Orders Retrieved: "+customerName);
+
 
         return orders;
     }
@@ -161,6 +163,7 @@ public class CustomerService {
         return customers;
 
     }
+
 
     }
 

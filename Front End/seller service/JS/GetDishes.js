@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <p><strong>Dish Name:</strong> ${dish.name}</p>
                     <p><strong>Price:</strong> $${dish.price}</p>
                     <p><strong>Amount:</strong> ${dish.amount}</p>
-                    <p><strong>company Name:</strong> ${dish.companyName}</p>
+                    <p><strong>company Name:</strong> ${companyName}</p>
                 `;
                 container.appendChild(card);
             });

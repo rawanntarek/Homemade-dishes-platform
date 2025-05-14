@@ -32,7 +32,7 @@ public class SellerService {
         if (!companyPassword.equals(password)) {
             return "Company with name " + companyName + " has the wrong password.";
         }
-
+        LogPublisher.log("Seller Service","Info","Company with name " + companyName + " Login successful.");
         return "Login successful!";
     }
 
@@ -43,6 +43,8 @@ public class SellerService {
                 .append("DishAmount", dish.getAmount())
                 .append("CompanyName", dish.getCompanyName());  // Save company name with the dish
         collection.insertOne(doc);
+        LogPublisher.log("Seller Service","Info","Company with name " + dish.getCompanyName() + " added dish with name " + dish.getName());
+
     }
 
     public List<Dish> getDishesByCompany(String companyName) {
@@ -58,6 +60,8 @@ public class SellerService {
             dishes.add(dish);
 
         }
+        LogPublisher.log("Seller Service","Info","Company with name " + companyName + " retrieved all dishes available for sale.");
+
         return dishes;
     }
     public List<Dish> getDishes() {
@@ -85,12 +89,17 @@ public class SellerService {
 
         if (dish.getName() != null && !dish.getName().isEmpty()) {
             updateFields.append("DishName", dish.getName());  // Update the name if it's provided
+            LogPublisher.log("Seller Service","Info","Company with name " + companyName + " updated dish with name " + dishName+" with name "+dish.getName());
+
         }
         if (dish.getPrice() != 0) {  // Assuming price can't be zero or handle the null case
             updateFields.append("DishPrice", dish.getPrice());  // Update the price if it's provided
+            LogPublisher.log("Seller Service","Info","Company with name " + companyName + " updated dish with name "+dishName+" with price "+dish.getPrice());
+
         }
         if (dish.getAmount() != 0) {  // Assuming amount can't be zero or handle the null case
             updateFields.append("DishAmount", dish.getAmount());  // Update the amount if it's provided
+            LogPublisher.log("Seller Service","Info","Company with name " + companyName + " updated dish with name "+dishName+" with amount "+dish.getAmount());
         }
         if(updateFields.isEmpty())
         {
@@ -131,6 +140,8 @@ public class SellerService {
                 soldOrders.add(order);
             }
         }
+        LogPublisher.log("Seller Service","Info","Company with name " + companyName + " retrieved all sold dishes ");
+
         return soldOrders;
     }
 }

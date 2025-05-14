@@ -27,6 +27,7 @@ public static void placeOrder(Order order) {
         String orderMessage=mapper.writeValueAsString(order);
         channel.basicPublish(EXCHANGE_NAME,"",null,orderMessage.getBytes());
         System.out.println("sent order with id: "+order.getOrderId());
+        LogPublisher.log("Customer Service","Info","Customer Placed an Order: "+order.getCustomerName());
     }
     catch(Exception e){
         e.printStackTrace();
@@ -96,7 +97,9 @@ private static void processPayment(ConfirmationOrder confirmationOrder, Channel 
                 channel.exchangeDeclare(PAYMENT_EXCHANGE, BuiltinExchangeType.FANOUT);
                 String paymentMessage = new ObjectMapper().writeValueAsString(paymentConfirmation);
                 channel.basicPublish(PAYMENT_EXCHANGE, "", null, paymentMessage.getBytes());
-                
+                LogPublisher.log("Customer Service","Info","Payment Successful on order with Id: "+ConfirmationOrder.getOrderId()+" customer name: "+ConfirmationOrder.getCustomerName());
+
+
                 updateOrderInDatabase(paymentConfirmation);
             } else {
                 ConfirmationOrder paymentRejection = new ConfirmationOrder(
@@ -107,7 +110,8 @@ private static void processPayment(ConfirmationOrder confirmationOrder, Channel 
                     confirmationOrder.getTotalOrderAmount()
                 );
                 sendFailedPaymentMessage(paymentRejection);
-                
+                LogPublisher.log("Customer Service","Error","Payment failed on order with Id: "+ConfirmationOrder.getOrderId()+" customer name: "+ConfirmationOrder.getCustomerName());
+
                 channel.exchangeDeclare(PAYMENT_EXCHANGE, BuiltinExchangeType.FANOUT);
                 String paymentMessage = new ObjectMapper().writeValueAsString(paymentRejection);
                 channel.basicPublish(PAYMENT_EXCHANGE, "", null, paymentMessage.getBytes());
@@ -132,6 +136,7 @@ public static void sendFailedPaymentMessage(ConfirmationOrder order) throws IOEx
             String message = objectMapper.writeValueAsString(order);
             channel.basicPublish(exchangeName, "", null, message.getBytes());
             System.out.println("sent failed payment message: " + message);
+
         }
     }
 
@@ -143,6 +148,8 @@ private static void updateOrderInDatabase(ConfirmationOrder confirmationOrder) {
     Document update = new Document("$set", new Document("status", status));
     collection.updateOne(query, update);
     System.out.println("Updated order status in database: " + status);
+    LogPublisher.log("Customer Service","Info","Order status for order with Id: "+confirmationOrder.getOrderId()+":"+confirmationOrder.getStatus()+" customer name: "+confirmationOrder.getCustomerName());
+
 }
 }
 
